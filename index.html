@@ -1104,15 +1104,16 @@ function wallG(x,y,len,rot,offset){
 })();
 
 /* ---------- table diagram ---------- */
+var tdN=0;
 function tableDiagram(){
-  var s='';
-  s+='<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="'+R+'"/></marker></defs>';
+  var s='', mid='ah'+(++tdN);
+  s+='<defs><marker id="'+mid+'" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="'+R+'"/></marker></defs>';
   s+='<rect x="105" y="85" width="130" height="130" rx="14" fill="#2C7A60"/><rect x="113" y="93" width="114" height="114" rx="10" fill="#3B8F72"/>';
   s+='<text x="170" y="156" text-anchor="middle" font-size="13" fill="#E3EFE9" font-weight="700" font-family="DM Sans,sans-serif">TABLE</text>';
-  s+='<path d="M200 248 Q262 246 268 196" fill="none" stroke="'+R+'" stroke-width="3" marker-end="url(#ah)"/>';
-  s+='<path d="M272 104 Q266 54 206 52" fill="none" stroke="'+R+'" stroke-width="3" marker-end="url(#ah)"/>';
-  s+='<path d="M134 52 Q76 54 70 104" fill="none" stroke="'+R+'" stroke-width="3" marker-end="url(#ah)"/>';
-  s+='<path d="M68 196 Q76 246 138 248" fill="none" stroke="'+R+'" stroke-width="3.5" marker-end="url(#ah)"/>';
+  s+='<path d="M200 248 Q262 246 268 196" fill="none" stroke="'+R+'" stroke-width="3" marker-end="url(#'+mid+')"/>';
+  s+='<path d="M272 104 Q266 54 206 52" fill="none" stroke="'+R+'" stroke-width="3" marker-end="url(#'+mid+')"/>';
+  s+='<path d="M134 52 Q76 54 70 104" fill="none" stroke="'+R+'" stroke-width="3" marker-end="url(#'+mid+')"/>';
+  s+='<path d="M68 196 Q76 246 138 248" fill="none" stroke="'+R+'" stroke-width="3.5" marker-end="url(#'+mid+')"/>';
   function seat(x,y,label,sub,fill,tc){
     return '<circle cx="'+x+'" cy="'+y+'" r="25" fill="'+fill+'"/>'+
       '<text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="14" font-weight="700" fill="'+tc+'" font-family="DM Sans,sans-serif">'+label+'</text>'+
