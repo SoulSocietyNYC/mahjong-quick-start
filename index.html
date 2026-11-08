@@ -364,10 +364,10 @@ h1,h2,h3{font-family:"Bungee",Impact,sans-serif;font-weight:400;letter-spacing:.
 
 /* header: spray tag + drips */
 header{background:#0B1410;border-bottom:4px solid var(--cyan);padding-bottom:14px;position:sticky;overflow:visible}
-header .brand h1{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-size:23px;white-space:nowrap;color:var(--yel);text-shadow:3px 3px 0 var(--pink);letter-spacing:.5px;line-height:1.05}
+header .brand h1{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-size:23px;white-space:nowrap;color:#3CC48C;text-shadow:2px 2px 0 #FFF7E3;letter-spacing:.5px;line-height:1.05}
 header .brand small{font-family:"Permanent Marker",cursive;font-size:15px;letter-spacing:1px;text-transform:none;color:var(--cyan);opacity:1;margin-top:4px}
 header .brand-mark{transform:rotate(-6deg);filter:drop-shadow(3px 3px 0 var(--pink))}
-.drips{position:absolute;left:0;right:0;bottom:-26px;height:26px;pointer-events:none}
+
 
 /* cards = paste-ups */
 .card,details.acc{background:var(--paper);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:var(--radius)}
@@ -465,6 +465,22 @@ nav.tabs a.on{color:var(--yel)}
 nav.tabs a.on .pill{background:rgba(233,181,58,.18)}
 .footer{color:#ddd;font-family:"Permanent Marker",cursive}
 .footer b{color:var(--yel)}
+
+/* ---- legibility sweep ---- */
+.hero .kicker{color:#FFF7E3}
+.view>.card:nth-of-type(odd),.view>.card:nth-of-type(even){transform:none}
+.view>.card.hero{transform:rotate(-.6deg)}
+nav.tabs a{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0}
+.pl{font-family:"Space Grotesk",sans-serif;font-weight:700}
+.check .t,.pq-q,.q{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:0}
+.check .t{font-size:17px}.pq-q{font-size:20px}.q{font-size:18px}
+.btn.sel{font-family:"Space Grotesk",sans-serif;font-weight:700}
+.cell .cap{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14px}
+.card h2{text-shadow:1.5px 1.5px 0 rgba(18,18,18,.85)}
+.o-yellow .sym,.legend i[style*="--yellow"]{color:#121212!important}
+.kicker{font-size:17px}
+.muted,.small.muted,.c-sub{color:#4A453F}
+details.acc summary{font-size:16.5px;line-height:1.3}
 </style>
 </head>
 <body>
@@ -478,7 +494,6 @@ nav.tabs a.on .pill{background:rgba(233,181,58,.18)}
     </svg>
     <div><h1>Mahjong Quick Start</h1><small>by Soul Society</small></div>
   </div>
-  <svg class="drips" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path fill="#3CC48C" d="M0 0H400V4C390 4 388 16 383 16S377 4 368 4C352 4 350 22 344 22S337 4 322 4H290C280 4 279 12 275 12S270 4 262 4H215C204 4 203 24 197 24S190 4 178 4H130C121 4 120 14 116 14S110 4 101 4H60C50 4 48 19 43 19S36 4 26 4H0Z"/></svg>
 </header>
 
 <main>
