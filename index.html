@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F4F3E">
+<title>Mahjong Quick Start · Soul Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&text=%E4%B8%80%E4%BA%8C%E4%B8%89%E5%9B%9B%E4%BA%94%E5%85%AD%E4%B8%83%E5%85%AB%E4%B9%9D%E8%90%AC%E6%9D%B1%E5%8D%97%E8%A5%BF%E5%8C%97%E4%B8%AD%E7%99%BC%E8%8A%B1%E6%98%A5&display=swap" rel="stylesheet">
+<style>
+:root{
+  --jade:#0F4F3E; --jade-2:#1A6B53; --jade-soft:#E3EFE9; --jade-line:#BFD8CC;
+  --ivory:#FBF7EE; --card:#FFFFFF; --ink:#1C2321; --muted:#5E6966;
+  --red:#C2342B; --red-soft:#FBE9E6; --gold:#C79A3B; --gold-soft:#FBF3E0;
+  --radius:16px; --shadow:0 1px 2px rgba(15,79,62,.06),0 4px 14px rgba(15,79,62,.07);
+  --nav-h:66px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--ivory);color:var(--ink)}
+body{font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.5;
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.2;margin:0}
+.cjk{font-family:"Noto Serif TC","Noto Serif CJK TC","Songti TC","PingFang TC","Noto Sans CJK TC","Microsoft JhengHei",serif;font-weight:700}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:var(--jade);color:#fff;
+  padding:calc(env(safe-area-inset-top) + 10px) 18px 12px}
+.brand{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.brand-mark{width:34px;height:44px;flex:none}
+.brand h1{font-size:21px;font-weight:700;letter-spacing:.2px}
+.brand small{display:block;font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;opacity:.8;font-weight:500;margin-top:2px}
+
+main{max-width:560px;margin:0 auto;padding:16px 14px 8px}
+.view{display:none;animation:fade .18s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 16px;margin-bottom:14px}
+.card h2{font-size:22px;margin-bottom:8px;color:var(--jade)}
+.card h3{font-size:18px;margin:14px 0 6px}
+.card p{margin:6px 0}
+.kicker{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.lead{font-size:18px}
+.muted{color:var(--muted)}
+.small{font-size:14.5px}
+b,strong{font-weight:700}
+.hl{background:linear-gradient(transparent 60%,#F6DFA6 60%);padding:0 2px}
+
+.hero{background:var(--jade);color:#fff}
+.hero h2{color:#fff}
+.hero .kicker{color:#CFE5DA}
+.hero .formula{font-family:Fraunces,Georgia,serif;font-size:26px;margin:4px 0 12px}
+.hero .formula em{font-style:normal;color:#F6D58A}
+
+/* Tiles */
+.tile{display:block;height:auto;filter:drop-shadow(0 1px 1px rgba(0,0,0,.12))}
+.t-xs{width:26px}.t-sm{width:32px}.t-md{width:42px}.t-lg{width:54px}.t-xl{width:120px}
+.tiles{display:flex;gap:3px;align-items:flex-end}
+.groups{display:flex;flex-wrap:wrap;gap:12px 14px;margin:10px 0 2px}
+.group{display:flex;flex-direction:column;align-items:center;gap:5px}
+.group .lbl{font-size:12.5px;color:var(--muted);font-weight:500}
+.hero .group .lbl{color:#CFE5DA}
+.hero .groups{background:rgba(255,255,255,.07);border-radius:12px;padding:12px 10px}
+
+/* lists */
+ol.steps{list-style:none;padding:0;margin:8px 0;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:4px 0 10px 40px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:3px;width:28px;height:28px;border-radius:50%;
+  background:var(--jade-soft);color:var(--jade);font-weight:700;display:grid;place-items:center;font-size:15px}
+ul.clean{padding-left:20px;margin:6px 0}
+ul.clean li{margin:4px 0}
+
+/* details accordions */
+details.acc{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+details.acc summary{list-style:none;cursor:pointer;padding:16px 16px;display:flex;align-items:center;gap:12px;
+  font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:700;color:var(--ink)}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary .num{width:30px;height:30px;border-radius:9px;background:var(--jade);color:#fff;display:grid;place-items:center;
+  font-family:"DM Sans",sans-serif;font-size:15px;flex:none}
+details.acc summary .chev{margin-left:auto;transition:transform .2s;color:var(--muted)}
+details.acc[open] summary .chev{transform:rotate(180deg)}
+details.acc .body{padding:0 16px 16px}
+
+/* callouts */
+.note{border-radius:12px;padding:12px 14px;margin:10px 0;font-size:15.5px}
+.note.tip{background:var(--jade-soft)}
+.note.warn{background:var(--gold-soft)}
+.note.no{background:var(--red-soft)}
+
+/* call table */
+.calls{display:grid;gap:10px;margin-top:8px}
+.call{border:1.5px solid var(--jade-line);border-radius:14px;padding:12px 14px}
+.call .say{font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:700;color:var(--jade)}
+.call .who{display:inline-block;font-size:13px;font-weight:700;border-radius:99px;padding:2px 10px;margin-left:6px;vertical-align:3px}
+.who.any{background:var(--jade-soft);color:var(--jade)}
+.who.left{background:var(--red-soft);color:var(--red)}
+.priority{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700;margin-top:6px}
+.priority span.p{background:var(--jade);color:#fff;border-radius:8px;padding:3px 10px;font-size:15px}
+.priority span.gt{color:var(--muted)}
+
+/* tiles view */
+.suit-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:10px 6px;margin-top:10px}
+.cell{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:4px 0;font:inherit;color:inherit;cursor:pointer;border-radius:10px}
+.cell:active{background:var(--jade-soft)}
+.cell .cap{font-size:12.5px;color:var(--muted);text-align:center;line-height:1.2}
+.numstrip{display:grid;grid-template-columns:repeat(9,1fr);border:1.5px solid var(--jade-line);border-radius:12px;overflow:hidden;margin:10px 0 4px}
+.numstrip div{text-align:center;padding:6px 0 4px;border-right:1px solid var(--jade-line)}
+.numstrip div:last-child{border-right:0}
+.numstrip .c{font-size:22px;display:block;line-height:1.2}
+.numstrip .n{font-size:13px;color:var(--muted);font-weight:700}
+.chip{display:inline-block;background:var(--jade-soft);color:var(--jade);font-size:12.5px;font-weight:700;border-radius:99px;padding:2px 10px}
+
+/* sheet */
+.sheet-bg{position:fixed;inset:0;background:rgba(10,30,24,.45);z-index:50;display:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:51;background:var(--card);border-radius:22px 22px 0 0;
+  padding:14px 20px calc(24px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;transform:translateY(105%);transition:transform .22s ease,visibility 0s .22s;visibility:hidden}
+.sheet.on{transform:none;visibility:visible;transition:transform .22s ease}
+.sheet .grab{width:44px;height:5px;border-radius:9px;background:#D6DDDA;margin:0 auto 14px}
+.sheet .row{display:flex;gap:18px;align-items:center}
+.sheet h3{font-size:24px;margin-bottom:6px}
+.sheet .close{margin-top:16px;width:100%}
+
+/* buttons */
+.btn{appearance:none;border:0;border-radius:14px;padding:14px 16px;font:inherit;font-weight:700;font-size:16.5px;cursor:pointer;
+  background:var(--jade);color:#fff;text-align:left;display:block;width:100%}
+.btn.ghost{background:var(--jade-soft);color:var(--jade)}
+.btn.outline{background:#fff;color:var(--ink);border:1.5px solid var(--jade-line)}
+.btn.sel{background:var(--jade);color:#fff;border-color:var(--jade)}
+.btn .sub{display:block;font-weight:400;font-size:14px;opacity:.85;margin-top:2px}
+.btn-stack{display:grid;gap:8px;margin-top:10px}
+.q{font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:700;margin-top:14px}
+.qnum{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--jade);color:#fff;font-family:"DM Sans";font-size:13px;margin-right:6px;vertical-align:2px}
+.result{border-radius:16px;padding:16px;margin-top:14px;display:none}
+.result.on{display:block;animation:fade .2s ease}
+.result.yes{background:var(--jade-soft);border:2px solid var(--jade-2)}
+.result.no{background:var(--red-soft);border:2px solid #E3A49E}
+.result.wait{background:#F1F3F2;border:2px solid #D6DDDA}
+.result .big{font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:700}
+.result.yes .big{color:var(--jade)}.result.no .big{color:var(--red)}
+.result ol{margin:8px 0 0;padding-left:20px}.result li{margin:4px 0}
+.reset{background:none;border:0;color:var(--jade);font:inherit;font-weight:700;padding:10px 0 0;cursor:pointer;text-decoration:underline}
+
+/* checklist */
+.check{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#fff;border:1.5px solid var(--jade-line);border-radius:14px;
+  padding:14px;font:inherit;color:inherit;cursor:pointer;margin-top:10px}
+.check .box{flex:none;width:30px;height:30px;border-radius:9px;border:2px solid var(--jade-line);display:grid;place-items:center;color:#fff;font-weight:700;transition:.15s}
+.check.done{border-color:var(--jade-2);background:#F4FAF7}
+.check.done .box{background:var(--jade);border-color:var(--jade)}
+.check .t{font-weight:700;font-size:17px;display:block}
+.check .d{display:block}
+.check .ex{display:flex}
+.check .d{font-size:14.5px;color:var(--muted);margin-top:2px}
+.check .ex{margin-top:8px}
+.win-banner{display:none;margin-top:14px;background:var(--red);color:#fff;border-radius:16px;padding:18px;text-align:center}
+.win-banner.on{display:block;animation:fade .2s ease}
+.win-banner .big{font-family:Fraunces,Georgia,serif;font-size:32px;font-weight:700}
+.bad{display:grid;gap:12px;margin-top:8px}
+.bad .row{display:flex;align-items:center;gap:12px}
+.bad .x{flex:none;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px}
+.bad .why{font-size:15px}
+
+/* diagrams */
+.diagram{display:block;width:100%;height:auto;margin:6px 0}
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two-up figure{margin:0;text-align:center}
+.two-up figcaption{font-size:14px;font-weight:700;color:var(--muted)}
+
+/* bottom nav */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
+  border-top:1px solid #E4E8E6;padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:#7C8784;font-size:12.5px;font-weight:700}
+nav.tabs a svg{width:25px;height:25px}
+nav.tabs a.on{color:var(--jade)}
+nav.tabs a.on .pill{background:var(--jade-soft)}
+nav.tabs .pill{border-radius:99px;padding:3px 16px;display:grid;place-items:center;transition:background .15s}
+
+.footer{text-align:center;color:var(--muted);font-size:13px;padding:8px 0 4px}
+.footer b{letter-spacing:1.5px}
+a.inline{color:var(--jade);font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 60 80" aria-hidden="true">
+      <rect x="1" y="4" width="58" height="75" rx="9" fill="#0A3A2D"/>
+      <rect x="1" y="1" width="58" height="73" rx="9" fill="#FBF7EE"/>
+      <text x="30" y="52" text-anchor="middle" font-size="40" fill="#C2342B" class="cjk">中</text>
+    </svg>
+    <div>
+      <h1>Mahjong Quick Start</h1>
+      <small>by Soul Society</small>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ LEARN ============ -->
+<section class="view" id="v-learn">
+
+  <div class="card hero">
+    <div class="kicker">The goal</div>
+    <div class="formula">Be first to make <em>4 sets + 1 pair</em></div>
+    <p style="margin:0 0 4px">That's 14 tiles. Shout <b>“Mahjong!”</b> and you win.</p>
+    <div class="groups" data-hand="d2,d3,d4:Run|b7,b7,b7:3 of a kind|c5,c6,c7:Run|dr,dr,dr:3 of a kind|we,we:Pair"></div>
+  </div>
+
+  <div class="card">
+    <div class="kicker">The 30-second version</div>
+    <ol class="steps">
+      <li><b>Everyone holds 13 tiles.</b> The dealer starts with 14.</li>
+      <li><b>On your turn:</b> draw 1 tile, then throw 1 away face up. Say its name.</li>
+      <li><b>Want someone's throw-away?</b> Call it if it finishes a set for you.</li>
+      <li><b>First to 4 sets + a pair</b> shouts “Mahjong!” and wins.</li>
+    </ol>
+    <p class="small muted" style="margin:0">Tap any section below for the details.</p>
+  </div>
+
+  <details class="acc">
+    <summary><span class="num">1</span>The 3 shapes you build<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="body">
+      <h3 style="margin-top:0">Run <span class="muted small">(“Chow”)</span></h3>
+      <p>3 numbers in a row, <b>all in the same suit</b>.</p>
+      <div class="tiles" data-tiles="b4,b5,b6" data-size="md"></div>
+
+      <h3>3 of a kind <span class="muted small">(“Pung”)</span></h3>
+      <p>3 identical tiles. Any tile works, including winds and dragons.</p>
+      <div class="tiles" data-tiles="d9,d9,d9" data-size="md" style="margin-bottom:8px"></div>
+      <div class="tiles" data-tiles="wn,wn,wn" data-size="md"></div>
+
+      <h3>Pair</h3>
+      <p>2 identical tiles. You need exactly one pair to win.</p>
+      <div class="tiles" data-tiles="dg,dg" data-size="md"></div>
+
+      <div class="note warn"><b>Winds and dragons can't make runs.</b> They only work as 3 of a kind or a pair.</div>
+      <div class="note tip"><b>No 4-of-a-kind sets today.</b> If you get a 4th copy, it's just a normal tile. Keep it or throw it away.</div>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">2</span>Setting up<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="body">
+      <ol class="steps">
+        <li><b>Shuffle</b> all the tiles face down.</li>
+        <li><b>Build walls.</b> Each player builds a wall 2 tiles high and 18 long. Push the 4 walls into a square or a pinwheel.</li>
+        <li><b>Roll the dice</b> to pick the dealer. Roll again at the start of every game.</li>
+        <li><b>Take your tiles from the wall:</b> 13 each, and the dealer takes 14.</li>
+        <li><b>Flowers?</b> Set them aside and draw replacements (see below).</li>
+      </ol>
+      <div class="two-up">
+        <figure><svg class="diagram" viewBox="0 0 120 120" id="wall-square"></svg><figcaption>Square</figcaption></figure>
+        <figure><svg class="diagram" viewBox="0 0 120 120" id="wall-pin"></svg><figcaption>Pinwheel</figcaption></figure>
+      </div>
+      <h3>Flower & season tiles</h3>
+      <div class="tiles" data-tiles="f1,f2,s1,s2" data-size="md"></div>
+      <p>These aren't played. <b>Any time you get one</b>, at the start or mid-game, put it face up beside you and draw a replacement from the wall.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">3</span>Taking your turn<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="body">
+      <p>The <b>dealer goes first</b> by throwing away 1 tile. After that, turns move <b>counterclockwise</b>, which means to the player on the <b>right</b> of whoever just went.</p>
+      <ol class="steps">
+        <li><b>Draw</b> 1 tile from the wall.</li>
+        <li><b>Throw away</b> 1 tile face up in the middle.</li>
+        <li><b>Say its name</b> out loud (“3 Bamboo!”).</li>
+      </ol>
+      <p class="small muted">Between turns you always hold 13 tiles.</p>
+      <a class="inline" href="#turn">See who goes when →</a>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">4</span>Calling a throw-away<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="body">
+      <p>When someone throws away a tile you need, <b>call it out loud right away</b>, before the next player draws.</p>
+      <div class="calls">
+        <div class="call"><span class="say">“Chow!”</span><span class="who left">Player before you only</span>
+          <div class="small">Takes the tile to finish a <b>run</b>. Only from the player who went right before you (on your left).</div></div>
+        <div class="call"><span class="say">“Pung!”</span><span class="who any">Anyone</span>
+          <div class="small">Takes the tile to make <b>3 of a kind</b>. Play continues from you, so others may get skipped.</div></div>
+        <div class="call"><span class="say">“Mahjong!”</span><span class="who any">Anyone</span>
+          <div class="small">Takes the tile that <b>finishes your hand</b>. You win!</div></div>
+      </div>
+      <p style="margin-top:12px">After you call, put that set <b>face up</b> in front of you. It's locked in and can't be changed. Then throw away a tile.</p>
+      <a class="inline" href="#turn">Use the “Can I call it?” helper →</a>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><span class="num">5</span>Winning (and nobody winning)<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+    <div class="body">
+      <p>You win by finishing 4 sets + 1 pair with either:</p>
+      <ul class="clean">
+        <li>a tile you <b>draw</b> yourself, or</li>
+        <li>a tile <b>anyone</b> throws away.</li>
+      </ul>
+      <p>Shout <b>“Mahjong!”</b> and lay out all 14 tiles so the table can check.</p>
+      <div class="note tip"><b>Made a mistake?</b> No penalty. Take your tiles back and keep playing.</div>
+      <h3>If the wall runs out</h3>
+      <p>Nobody wins that game. Reshuffle, roll for a new dealer, and play again.</p>
+      <a class="inline" href="#won">Check your hand →</a>
+    </div>
+  </details>
+
+  <div class="footer">Happy playing! <b>SOUL SOCIETY</b></div>
+</section>
+
+<!-- ============ TILES ============ -->
+<section class="view" id="v-tiles">
+  <div class="card">
+    <div class="kicker">Tile guide</div>
+    <p style="margin:0">There are <b>4 copies of every tile</b>. Tap any tile to see it up close.</p>
+    <p class="small muted" style="margin:6px 0 0">Your set might look a little different, but the numbers and symbols are the same.</p>
+  </div>
+
+  <div class="card">
+    <div class="suit-head"><h2>Dots</h2><span class="chip">Suit · 1–9</span></div>
+    <p class="small muted" style="margin:0">Count the circles.</p>
+    <div class="grid" data-grid="d1,d2,d3,d4,d5,d6,d7,d8,d9"></div>
+  </div>
+
+  <div class="card">
+    <div class="suit-head"><h2>Bamboo</h2><span class="chip">Suit · 1–9</span></div>
+    <p class="small muted" style="margin:0">Count the sticks. The <b>1 is a bird</b>.</p>
+    <div class="grid" data-grid="b1,b2,b3,b4,b5,b6,b7,b8,b9"></div>
+  </div>
+
+  <div class="card">
+    <div class="suit-head"><h2>Characters</h2><span class="chip">Suit · 1–9</span></div>
+    <p class="small" style="margin:0">Read the <b>top symbol</b>. The red one at the bottom (萬) is the same on every tile, so you can ignore it.</p>
+    <div class="numstrip">
+      <div><span class="c cjk">一</span><span class="n">1</span></div><div><span class="c cjk">二</span><span class="n">2</span></div><div><span class="c cjk">三</span><span class="n">3</span></div>
+      <div><span class="c cjk">四</span><span class="n">4</span></div><div><span class="c cjk">五</span><span class="n">5</span></div><div><span class="c cjk">六</span><span class="n">6</span></div>
+      <div><span class="c cjk">七</span><span class="n">7</span></div><div><span class="c cjk">八</span><span class="n">8</span></div><div><span class="c cjk">九</span><span class="n">9</span></div>
+    </div>
+    <p class="small muted" style="margin:6px 0 0"><b>Tip:</b> 1, 2 and 3 are just 1, 2 and 3 lines.</p>
+    <div class="grid" data-grid="c1,c2,c3,c4,c5,c6,c7,c8,c9"></div>
+  </div>
+
+  <div class="card">
+    <div class="suit-head"><h2>Winds</h2><span class="chip">Honors · no numbers</span></div>
+    <p class="small muted" style="margin:0">Only 3 of a kind or a pair. Never runs.</p>
+    <div class="grid" data-grid="we,ws,ww,wn"></div>
+  </div>
+
+  <div class="card">
+    <div class="suit-head"><h2>Dragons</h2><span class="chip">Honors · no numbers</span></div>
+    <p class="small muted" style="margin:0">Only 3 of a kind or a pair. Never runs. The White Dragon is sometimes completely blank.</p>
+    <div class="grid" data-grid="dr,dg,dw"></div>
+  </div>
+
+  <div class="card">
+    <div class="suit-head"><h2>Flowers & Seasons</h2><span class="chip">Bonus · set aside</span></div>
+    <p class="small muted" style="margin:0">One of each (8 total). Not played. Set them aside and draw a replacement.</p>
+    <div class="grid" data-grid="f1,f2,f3,f4,s1,s2,s3,s4"></div>
+  </div>
+</section>
+
+<!-- ============ MY TURN ============ -->
+<section class="view" id="v-turn">
+  <div class="card">
+    <div class="kicker">Who goes when</div>
+    <h2>Turns go to the right</h2>
+    <svg class="diagram" viewBox="0 0 340 300" id="table-diagram" aria-label="Turn order diagram"></svg>
+    <div class="note tip" style="margin-bottom:0">The player on your <b>left</b> goes <b>right before you</b>. Their throw-aways are the only ones you can <b>Chow</b>.</div>
+  </div>
+
+  <div class="card">
+    <div class="kicker">Every turn</div>
+    <ol class="steps" style="margin-bottom:0">
+      <li><b>Draw</b> 1 tile from the wall.</li>
+      <li><b>Flower?</b> Set it aside and draw again.</li>
+      <li><b>Throw away</b> 1 tile face up and say its name.</li>
+    </ol>
+  </div>
+
+  <div class="card" id="helper">
+    <div class="kicker">Someone threw away a tile</div>
+    <h2>Can I call it?</h2>
+
+    <div class="q"><span class="qnum">1</span>Who threw it away?</div>
+    <div class="btn-stack" data-q="who">
+      <button class="btn outline" data-v="left">The player right before me<span class="sub">They're on my left</span></button>
+      <button class="btn outline" data-v="other">Someone else</button>
+    </div>
+
+    <div class="q"><span class="qnum">2</span>What would it do for me?</div>
+    <div class="btn-stack" data-q="what">
+      <button class="btn outline" data-v="win">Finish my whole hand<span class="sub">4 sets + 1 pair</span></button>
+      <button class="btn outline" data-v="pung">Make 3 of a kind<span class="sub">I'm holding 2 of it</span></button>
+      <button class="btn outline" data-v="chow">Finish a run<span class="sub">I'm holding the other 2 numbers, same suit</span></button>
+      <button class="btn outline" data-v="none">Nothing yet</button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <div class="card">
+    <div class="kicker">If more than one person calls</div>
+    <div class="priority"><span class="p">Mahjong</span><span class="gt">beats</span><span class="p">Pung</span><span class="gt">beats</span><span class="p">Chow</span></div>
+    <p class="small" style="margin:10px 0 0">If two people both call <b>Mahjong</b> on the same tile, <b>roll the dice</b>. Highest roll wins it.</p>
+  </div>
+</section>
+
+<!-- ============ WON? ============ -->
+<section class="view" id="v-won">
+  <div class="card">
+    <div class="kicker">Before you shout</div>
+    <h2>Think you won?</h2>
+    <p style="margin:0">Count your tiles, including the one you just drew or called. Tap each check:</p>
+
+    <button class="check" data-check>
+      <span class="box">✓</span>
+      <span><span class="t">14 tiles: 4 sets + 1 pair</span>
+      <span class="d block">Split them into four groups of 3, plus 2 left over that match.</span></span>
+    </button>
+    <button class="check" data-check>
+      <span class="box">✓</span>
+      <span><span class="t">Each set of 3 is a run or 3 of a kind</span>
+      <span class="d">Runs are 3 numbers in a row, all in the same suit.</span>
+      <span class="ex tiles" data-tiles="c3,c4,c5" data-size="sm"></span></span>
+    </button>
+    <button class="check" data-check>
+      <span class="box">✓</span>
+      <span><span class="t">No runs made of winds or dragons</span>
+      <span class="d">Those only count as 3 of a kind or the pair.</span></span>
+    </button>
+
+    <div class="win-banner" id="win-banner">
+      <div class="big">“Mahjong!”</div>
+      <div>Lay out all 14 tiles so the table can check.</div>
+    </div>
+    <button class="reset" id="check-reset" style="display:none">Reset checks</button>
+  </div>
+
+  <div class="card">
+    <div class="kicker">These don't count</div>
+    <div class="bad">
+      <div><div class="row"><span class="x">✕</span><div class="tiles" data-tiles="d3,b4,c5" data-size="sm"></div></div>
+        <div class="why">Different suits. A run has to be all Dots, all Bamboo, or all Characters.</div></div>
+      <div><div class="row"><span class="x">✕</span><div class="tiles" data-tiles="d8,d9,d1" data-size="sm"></div></div>
+        <div class="why">No wrapping around. 8-9-1 isn't a run.</div></div>
+      <div><div class="row"><span class="x">✕</span><div class="tiles" data-tiles="we,ws,ww" data-size="sm"></div></div>
+        <div class="why">Winds and dragons can't make runs.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="kicker">A winning hand looks like</div>
+    <div class="groups" data-hand="b1,b2,b3:Run|d5,d5,d5:3 of a kind|c7,c8,c9:Run|ws,ws,ws:3 of a kind|d2,d2:Pair"></div>
+    <div class="note tip" style="margin-bottom:0"><b>Wrong call?</b> No penalty. Take your tiles back and keep playing.</div>
+  </div>
+</section>
+
+</main>
+
+<!-- Tile sheet -->
+<div class="sheet-bg" id="sheet-bg"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="grab"></div>
+  <div class="row">
+    <div id="sheet-tile"></div>
+    <div><h3 id="sheet-title"></h3><div id="sheet-desc" class="small"></div></div>
+  </div>
+  <button class="btn ghost close" id="sheet-close" style="text-align:center">Close</button>
+</div>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="in">
+    <a href="#learn" data-tab="learn"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></span>Learn</a>
+    <a href="#tiles" data-tab="tiles"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="8" height="12" rx="2"/><rect x="13" y="7" width="8" height="12" rx="2"/></svg></span>Tiles</a>
+    <a href="#turn" data-tab="turn"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg></span>My Turn</a>
+    <a href="#won" data-tab="won"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/><path d="M12 13v4M8.5 20h7"/></svg></span>Won?</a>
+  </div>
+</nav>
+
+<script>
+(function(){
+"use strict";
+/* ---------- Tile drawing ---------- */
+var C = {B:"#25548F", G:"#17714F", R:"#C2342B", N:"#1B2B4A", ivory:"#FFFDF6", edge:"#DCD3BD", back:"#155C47"};
+var NUM = ["","一","二","三","四","五","六","七","八","九"];
+var WIND = {we:["東","East"], ws:["南","South"], ww:["西","West"], wn:["北","North"]};
+
+function dot(x,y,r,c){
+  return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+c+'"/>'+
+         '<circle cx="'+x+'" cy="'+y+'" r="'+(r*0.62).toFixed(2)+'" fill="none" stroke="#fff" stroke-width="'+(r*0.22).toFixed(2)+'"/>'+
+         '<circle cx="'+x+'" cy="'+y+'" r="'+(r*0.24).toFixed(2)+'" fill="#fff"/>';
+}
+var DOTS = {
+  2:[[30,22,11],[30,54,11]],
+  3:[[16,17,9],[30,38,9],[44,59,9]],
+  4:[[18,24,10],[42,24,10],[18,52,10],[42,52,10]],
+  5:[[17,19,9],[43,19,9],[30,38,9],[17,57,9],[43,57,9]],
+  6:[[19,17,8.5],[41,17,8.5],[19,38,8.5],[41,38,8.5],[19,59,8.5],[41,59,8.5]],
+  7:[[14,13,7],[30,21,7],[46,29,7],[19,47,7.5],[41,47,7.5],[19,64,7.5],[41,64,7.5]],
+  8:[[19,13,7.5],[41,13,7.5],[19,30,7.5],[41,30,7.5],[19,47,7.5],[41,47,7.5],[19,64,7.5],[41,64,7.5]],
+  9:[[15,17,7.5],[30,17,7.5],[45,17,7.5],[15,38,7.5],[30,38,7.5],[45,38,7.5],[15,59,7.5],[30,59,7.5],[45,59,7.5]]
+};
+var DOTC = {2:"GB",3:"BRG",4:"BGGB",5:"BGRGB",6:"GGRRRR",7:"GGGRRRR",8:"BBBBBBBB",9:"BBBRRRGGG"};
+
+function stick(x,y,h,c){
+  var w=7, top=y-h/2;
+  return '<rect x="'+(x-w/2)+'" y="'+top+'" width="'+w+'" height="'+h+'" rx="3.5" fill="'+c+'"/>'+
+    '<line x1="'+(x-w/2+0.5)+'" y1="'+y+'" x2="'+(x+w/2-0.5)+'" y2="'+y+'" stroke="#fff" stroke-width="1.6" opacity=".9"/>'+
+    '<line x1="'+x+'" y1="'+(top+2.5)+'" x2="'+x+'" y2="'+(top+h-2.5)+'" stroke="#fff" stroke-width="1" opacity=".35"/>';
+}
+var BAM = {
+  2:[[30,23,22],[30,53,22]],
+  3:[[30,23,22],[20,53,22],[40,53,22]],
+  4:[[20,23,22],[40,23,22],[20,53,22],[40,53,22]],
+  5:[[16,22,20],[44,22,20],[30,38,20,"R"],[16,54,20],[44,54,20]],
+  6:[[16,23,22],[30,23,22],[44,23,22],[16,53,22],[30,53,22],[44,53,22]],
+  7:[[30,15,15,"R"],[16,38,17],[30,38,17],[44,38,17],[16,61,17],[30,61,17],[44,61,17]],
+  8:[[12,23,22],[24,23,22],[36,23,22],[48,23,22],[12,53,22],[24,53,22],[36,53,22],[48,53,22]],
+  9:[[16,16,17],[30,16,17,"R"],[44,16,17],[16,38,17],[30,38,17,"R"],[44,38,17],[16,60,17],[30,60,17,"R"],[44,60,17]]
+};
+function bird(){
+  return '<path d="M14 52 L4 62 M16 54 L8 68 M19 55 L15 70" stroke="'+C.R+'" stroke-width="3.2" stroke-linecap="round"/>'+
+    '<ellipse cx="29" cy="45" rx="15" ry="10" fill="'+C.G+'" transform="rotate(-20 29 45)"/>'+
+    '<path d="M22 44 Q30 36 38 42 Q31 46 22 44Z" fill="#7FB59A"/>'+
+    '<circle cx="42" cy="28" r="7" fill="'+C.G+'"/>'+
+    '<circle cx="44" cy="26.5" r="1.7" fill="#fff"/>'+
+    '<path d="M48.5 27 L56 29 L48.5 31Z" fill="'+C.R+'"/>'+
+    '<path d="M28 55 L26 64 M33 54 L34 64" stroke="'+C.N+'" stroke-width="1.8" stroke-linecap="round"/>';
+}
+function flower(n,season){
+  var pal = season ? ["#D9822B","#C2342B","#B8862B","#25548F"] : ["#C2342B","#B04A8C","#D9822B","#17714F"];
+  var c = pal[n-1], s='';
+  for(var i=0;i<6;i++){var a=i*Math.PI/3; s+='<ellipse cx="'+(30+Math.cos(a)*9).toFixed(1)+'" cy="'+(38+Math.sin(a)*9).toFixed(1)+'" rx="7" ry="5" fill="'+c+'" opacity=".85" transform="rotate('+(i*60)+' '+(30+Math.cos(a)*9).toFixed(1)+' '+(38+Math.sin(a)*9).toFixed(1)+')"/>';}
+  s+='<circle cx="30" cy="38" r="5" fill="#F2C14E"/>';
+  s+='<path d="M30 50 Q28 60 31 70" stroke="'+C.G+'" stroke-width="2.4" fill="none"/><path d="M30 60 Q38 56 42 60 Q36 64 30 62Z" fill="'+C.G+'"/>';
+  s+='<text x="9" y="17" font-size="12" font-weight="700" fill="'+c+'" font-family="DM Sans,sans-serif">'+n+'</text>';
+  s+='<text x="51" y="17" text-anchor="middle" font-size="10" fill="'+C.N+'" class="cjk">'+(season?"春":"花")+'</text>';
+  return s;
+}
+function face(id){
+  var s=id[0], n=parseInt(id.slice(1),10);
+  if(id==="dr") return '<text x="30" y="53" text-anchor="middle" font-size="42" fill="'+C.R+'" class="cjk">中</text>';
+  if(id==="dg") return '<text x="30" y="53" text-anchor="middle" font-size="40" fill="'+C.G+'" class="cjk">發</text>';
+  if(id==="dw") return '<rect x="11" y="12" width="38" height="52" rx="4" fill="none" stroke="'+C.B+'" stroke-width="3.2"/><rect x="16" y="17" width="28" height="42" rx="2" fill="none" stroke="'+C.B+'" stroke-width="1.4"/>';
+  if(WIND[id]) return '<text x="30" y="53" text-anchor="middle" font-size="40" fill="'+C.N+'" class="cjk">'+WIND[id][0]+'</text>';
+  if(s==="f"||s==="s") return flower(n, s==="s");
+  if(s==="d"){
+    if(n===1) return dot(30,38,19,C.G)+'<circle cx="30" cy="38" r="7" fill="'+C.R+'"/><circle cx="30" cy="38" r="2.6" fill="#fff"/>';
+    return DOTS[n].map(function(p,i){return dot(p[0],p[1],p[2],C[DOTC[n][i]]);}).join("");
+  }
+  if(s==="b"){
+    if(n===1) return bird();
+    return BAM[n].map(function(p){return stick(p[0],p[1],p[2],C[p[3]||"G"]);}).join("");
+  }
+  if(s==="c") return '<text x="30" y="33" text-anchor="middle" font-size="25" fill="'+C.N+'" class="cjk">'+NUM[n]+'</text>'+
+                     '<text x="30" y="66" text-anchor="middle" font-size="27" fill="'+C.R+'" class="cjk">萬</text>';
+  return "";
+}
+function tileSVG(id,size){
+  return '<svg class="tile t-'+(size||"md")+'" viewBox="0 0 60 80" role="img" aria-label="'+name(id)+'">'+
+    '<rect x="1" y="4" width="58" height="75" rx="8" fill="'+C.back+'"/>'+
+    '<rect x="1" y="1" width="58" height="73" rx="8" fill="'+C.ivory+'" stroke="'+C.edge+'" stroke-width="1"/>'+
+    face(id)+'</svg>';
+}
+function name(id){
+  var s=id[0], n=parseInt(id.slice(1),10);
+  if(id==="dr") return "Red Dragon";
+  if(id==="dg") return "Green Dragon";
+  if(id==="dw") return "White Dragon";
+  if(WIND[id]) return WIND[id][1]+" Wind";
+  if(s==="d") return n+" Dots";
+  if(s==="b") return n+" Bamboo";
+  if(s==="c") return n+" Characters";
+  if(s==="f") return "Flower "+n;
+  if(s==="s") return "Season "+n;
+  return id;
+}
+function shortName(id){
+  var s=id[0], n=id.slice(1);
+  if(id==="dr") return "Red";
+  if(id==="dg") return "Green";
+  if(id==="dw") return "White";
+  if(WIND[id]) return WIND[id][1];
+  if(s==="f") return "Flower "+n;
+  if(s==="s") return "Season "+n;
+  return n;
+}
+function desc(id){
+  var s=id[0], n=parseInt(id.slice(1),10);
+  if(id==="dr") return 'Symbol 中. Honor tile: use it for 3 of a kind or a pair, never a run. 4 in the set.';
+  if(id==="dg") return 'Symbol 發. Honor tile: use it for 3 of a kind or a pair, never a run. 4 in the set.';
+  if(id==="dw") return 'A frame, or sometimes a completely blank tile. Honor tile: 3 of a kind or a pair only. 4 in the set.';
+  if(WIND[id]) return 'Symbol '+WIND[id][0]+'. Honor tile: use it for 3 of a kind or a pair, never a run. 4 in the set.';
+  if(s==="f"||s==="s") return 'Bonus tile, only 1 in the set. Set it aside and draw a replacement from the wall.';
+  if(s==="c") return 'Top symbol '+NUM[n]+' = '+n+'. Runs need 3 Characters in a row. 4 in the set.';
+  if(s==="b"&&n===1) return 'The bird is the 1 of Bamboo. Runs need 3 Bamboo in a row. 4 in the set.';
+  if(s==="b") return 'Count the sticks: '+n+'. Runs need 3 Bamboo in a row. 4 in the set.';
+  if(s==="d") return 'Count the circles: '+n+'. Runs need 3 Dots in a row. 4 in the set.';
+  return "";
+}
+
+/* render placeholders */
+document.querySelectorAll("[data-tiles]").forEach(function(el){
+  var size=el.getAttribute("data-size")||"md";
+  el.innerHTML=el.getAttribute("data-tiles").split(",").map(function(t){return tileSVG(t,size);}).join("");
+});
+document.querySelectorAll("[data-hand]").forEach(function(el){
+  el.innerHTML=el.getAttribute("data-hand").split("|").map(function(g){
+    var parts=g.split(":"), ids=parts[0].split(",");
+    return '<div class="group"><div class="tiles">'+ids.map(function(t){return tileSVG(t,"sm");}).join("")+'</div><div class="lbl">'+parts[1]+'</div></div>';
+  }).join("");
+});
+document.querySelectorAll("[data-grid]").forEach(function(el){
+  el.innerHTML=el.getAttribute("data-grid").split(",").map(function(t){
+    return '<button class="cell" data-id="'+t+'" aria-label="'+name(t)+'">'+tileSVG(t,"lg")+'<span class="cap">'+shortName(t)+'</span></button>';
+  }).join("");
+});
+
+/* sheet */
+var sheet=document.getElementById("sheet"), bg=document.getElementById("sheet-bg");
+function openSheet(id){
+  document.getElementById("sheet-tile").innerHTML=tileSVG(id,"xl");
+  document.getElementById("sheet-title").textContent=name(id);
+  document.getElementById("sheet-desc").textContent=desc(id);
+  bg.style.display="block"; requestAnimationFrame(function(){sheet.classList.add("on");});
+}
+function closeSheet(){sheet.classList.remove("on"); setTimeout(function(){bg.style.display="none";},200);}
+document.addEventListener("click",function(e){
+  var c=e.target.closest(".cell"); if(c){openSheet(c.getAttribute("data-id"));}
+});
+bg.addEventListener("click",closeSheet);
+document.getElementById("sheet-close").addEventListener("click",closeSheet);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
+
+/* wall diagrams */
+function bar(x,y,w,h){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="3" fill="'+C.back+'"/><rect x="'+(x+1.5)+'" y="'+(y+1.5)+'" width="'+(w-3)+'" height="'+(h-3)+'" rx="2" fill="none" stroke="#3E8A70" stroke-width="1"/>';}
+document.getElementById("wall-square").innerHTML=
+  '<rect x="0" y="0" width="120" height="120" rx="12" fill="#EEF5F1"/>'+
+  bar(20,16,80,11)+bar(93,20,11,80)+bar(20,93,80,11)+bar(16,20,11,80);
+document.getElementById("wall-pin").innerHTML=
+  '<rect x="0" y="0" width="120" height="120" rx="12" fill="#EEF5F1"/>'+
+  bar(26,14,78,11)+bar(93,25,11,78)+bar(16,95,78,11)+bar(16,17,11,78);
+
+/* table diagram */
+(function(){
+  var s='';
+  s+='<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="'+C.R+'"/></marker></defs>';
+  s+='<rect x="105" y="85" width="130" height="130" rx="14" fill="#2C7A60"/><rect x="113" y="93" width="114" height="114" rx="10" fill="#3B8F72"/>';
+  s+='<text x="170" y="156" text-anchor="middle" font-size="13" fill="#E3EFE9" font-weight="700" font-family="DM Sans,sans-serif">TABLE</text>';
+  /* arc arrows: you(bottom) -> right -> top -> left -> you */
+  s+='<path d="M200 248 Q262 246 268 196" fill="none" stroke="'+C.R+'" stroke-width="3" marker-end="url(#ah)"/>';
+  s+='<path d="M272 104 Q266 54 206 52" fill="none" stroke="'+C.R+'" stroke-width="3" marker-end="url(#ah)"/>';
+  s+='<path d="M134 52 Q76 54 70 104" fill="none" stroke="'+C.R+'" stroke-width="3" marker-end="url(#ah)"/>';
+  s+='<path d="M68 196 Q76 246 138 248" fill="none" stroke="'+C.R+'" stroke-width="3.5" marker-end="url(#ah)"/>';
+  function seat(x,y,label,sub,fill,tc){
+    return '<circle cx="'+x+'" cy="'+y+'" r="24" fill="'+fill+'"/>'+
+      '<text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="14" font-weight="700" fill="'+tc+'" font-family="DM Sans,sans-serif">'+label+'</text>'+
+      (sub?'<text x="'+x+'" y="'+(y+42)+'" text-anchor="middle" font-size="12" fill="#5E6966" font-family="DM Sans,sans-serif">'+sub+'</text>':'');
+  }
+  s+=seat(170,250,"YOU","",C.R,"#fff");
+  s+=seat(290,150,"Right","goes after you","#E3EFE9","#0F4F3E");
+  s+=seat(170,30,"Across","","#E3EFE9","#0F4F3E");
+  s+='<text x="170" y="70" text-anchor="middle" font-size="0"></text>';
+  s+=seat(50,150,"Left","goes before you","#FBE9E6",C.R);
+  this.innerHTML=s;
+}).call(document.getElementById("table-diagram"));
+
+/* call helper */
+var state={who:null,what:null}, res=document.getElementById("result");
+document.querySelectorAll("[data-q]").forEach(function(group){
+  group.addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    group.querySelectorAll("button").forEach(function(x){x.classList.remove("sel");x.classList.add("outline");});
+    b.classList.add("sel"); b.classList.remove("outline");
+    state[group.getAttribute("data-q")]=b.getAttribute("data-v");
+    showResult();
+  });
+});
+function showResult(){
+  if(!state.who||!state.what){res.className="result";return;}
+  var h="", cls="yes";
+  var fast='<p class="small" style="margin:10px 0 0"><b>Be quick:</b> call before the next player draws.</p>';
+  if(state.what==="win"){
+    h='<div class="big">Yes! Shout “Mahjong!”</div><p>You can win off <b>anyone\'s</b> throw-away.</p><ol><li>Take the tile.</li><li>Lay out all 14 tiles so the table can check.</li></ol>'+fast;
+  } else if(state.what==="pung"){
+    h='<div class="big">Yes, call “Pung!”</div><p>You can make 3 of a kind from <b>anyone\'s</b> throw-away.</p><ol><li>Take the tile. <b>Don\'t</b> draw from the wall.</li><li>Put the 3 tiles face up in front of you. They\'re locked in.</li><li>Throw away 1 tile.</li><li>The turn moves to <b>your right</b>, so anyone in between gets skipped.</li></ol>'+fast;
+  } else if(state.what==="chow" && state.who==="left"){
+    h='<div class="big">Yes, call “Chow!”</div><p>The player right before you threw it, so you can finish a run.</p><ol><li>Take the tile. <b>Don\'t</b> draw from the wall.</li><li>Put the run face up in front of you. It\'s locked in.</li><li>Throw away 1 tile.</li></ol>'+fast;
+  } else if(state.what==="chow"){
+    cls="no";
+    h='<div class="big">Not this one</div><p>You can only <b>Chow</b> from the player who went <b>right before you</b> (on your left). Let it go and wait for your turn.</p><p class="small" style="margin:8px 0 0">If you have <b>2 of that exact tile</b>, you could call <b>Pung</b> instead.</p>';
+  } else {
+    cls="wait";
+    h='<div class="big">Let it go</div><p>Don\'t call. The next player draws as normal.</p>';
+  }
+  h+='<button class="reset" id="helper-reset">Start over</button>';
+  res.className="result on "+cls; res.innerHTML=h;
+  document.getElementById("helper-reset").onclick=function(){
+    state={who:null,what:null};
+    document.querySelectorAll("[data-q] button").forEach(function(x){x.classList.remove("sel");x.classList.add("outline");});
+    res.className="result";
+    document.getElementById("helper").scrollIntoView({behavior:"smooth",block:"start"});
+  };
+  setTimeout(function(){res.scrollIntoView({behavior:"smooth",block:"nearest"});},60);
+}
+
+/* win checklist */
+var checks=document.querySelectorAll("[data-check]"), banner=document.getElementById("win-banner"), creset=document.getElementById("check-reset");
+function updChecks(){
+  var all=true, any=false;
+  checks.forEach(function(c){ if(c.classList.contains("done")) any=true; else all=false; });
+  banner.classList.toggle("on",all);
+  creset.style.display=any?"inline-block":"none";
+  if(all) setTimeout(function(){banner.scrollIntoView({behavior:"smooth",block:"nearest"});},60);
+}
+checks.forEach(function(c){c.addEventListener("click",function(){c.classList.toggle("done");updChecks();});});
+creset.addEventListener("click",function(){checks.forEach(function(c){c.classList.remove("done");});updChecks();});
+
+/* tabs */
+var TABS=["learn","tiles","turn","won"];
+function route(){
+  var h=(location.hash||"").replace("#","");
+  if(TABS.indexOf(h)<0) h="learn";
+  TABS.forEach(function(t){
+    document.getElementById("v-"+t).classList.toggle("on",t===h);
+    document.querySelector('[data-tab="'+t+'"]').classList.toggle("on",t===h);
+  });
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+route();
+})();
+</script>
+</body>
+</html>
