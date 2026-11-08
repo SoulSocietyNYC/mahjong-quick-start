@@ -215,11 +215,14 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);background:#E6ECE9;border-radius:14px;padding:4px;margin-bottom:18px}
 .seg button{border:0;background:none;padding:11px 4px;border-radius:11px;font:inherit;font-size:16px;font-weight:700;color:var(--muted);cursor:pointer}
 .seg button.on{background:#fff;color:var(--jade);box-shadow:var(--shadow)}
-.ptile{position:relative;border:0;background:none;padding:3px;border-radius:9px;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:pointer;transition:transform .1s}
+.ptile{position:relative;border:0;background:none;padding:3px;border-radius:9px;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:pointer;transition:transform .1s}
 .ptile .tile{width:100%;pointer-events:none}
 .ptile.flash{animation:flash .25s ease}
 @keyframes flash{50%{transform:scale(.88)}}
-.picker-row{display:grid;grid-template-columns:repeat(9,1fr);gap:8px 5px;margin-top:6px}
+.picker-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px 10px;margin-top:8px}
+#c-picker .ptile,#c-picker .row-lbl{scroll-margin-top:calc(var(--hdr,66px) + 300px)}
+.sticky-hand .c-sub{font-size:13.5px}
+.sticky-hand{padding:12px 12px}
 .ptile.o-green{box-shadow:0 0 0 3px var(--green);background:var(--green-soft)}
 .ptile.o-blue{box-shadow:0 0 0 3px var(--blue);background:var(--blue-soft)}
 .ptile.o-yellow{box-shadow:0 0 0 3px var(--yellow);background:var(--yellow-soft)}
@@ -229,6 +232,8 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 .ptile.out .tile{opacity:.25}
 .ptile .cnt{position:absolute;right:-3px;bottom:-5px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:700;border-radius:99px;min-width:18px;height:18px;line-height:18px;text-align:center;padding:0 4px;pointer-events:none}
 .ptile.out .cnt{background:#9AA4A1}
+.ptile.sw-r{box-shadow:0 0 0 3px var(--green)!important;background:var(--green-soft)!important}
+.ptile.sw-l{box-shadow:0 0 0 3px var(--red)!important;background:var(--red-soft)!important}
 .ptile.sel{box-shadow:0 0 0 3px var(--jade);background:var(--jade-soft)}
 .row-lbl{font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin:16px 0 2px}
 .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;font-size:15px;margin:14px 0 4px}
@@ -244,8 +249,8 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 .c-top .tbtn{flex:none;padding:7px 13px;font-size:14.5px}
 .c-status{font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:700;line-height:1.25}
 .c-sub{font-size:14.5px;color:var(--muted);margin-top:3px;line-height:1.4}
-.hand{display:flex;flex-wrap:wrap;gap:12px 10px;min-height:56px;padding:14px 8px 8px;background:#F4F7F5;border-radius:12px;border:1.5px dashed var(--jade-line);margin-top:10px;align-items:flex-end}
-.hand .empty{color:var(--muted);font-size:15px;padding:6px;align-self:center}
+.hand{display:grid;grid-template-columns:repeat(7,1fr);gap:10px 5px;min-height:56px;padding:14px 8px 8px;background:#F4F7F5;border-radius:12px;border:1.5px dashed var(--jade-line);margin-top:10px;align-items:flex-end}
+.hand .empty{grid-column:1/-1;color:var(--muted);font-size:15px;padding:6px;align-self:center}
 .hgroup{display:flex;flex-direction:column;gap:3px;align-items:center}
 .hgroup .gl{font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
 .hgroup .gt{display:flex;gap:2px}
@@ -286,7 +291,7 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 .gm-fb{border-radius:12px;padding:12px 14px;margin-top:12px;font-size:16.5px;line-height:1.5}
 .gm-fb.ok{background:var(--jade-soft)}.gm-fb.bad{background:var(--red-soft)}
 .gm-table{margin-bottom:0}
-.gt{position:relative;width:100%;aspect-ratio:1;border-radius:22px;container-type:inline-size;
+.gtable{position:relative;width:100%;aspect-ratio:1;border-radius:22px;container-type:inline-size;
   background:radial-gradient(circle at 50% 45%,#34906D 0%,#24735A 60%,#1C5F4A 100%);
   box-shadow:inset 0 0 0 9px #8A5A2E,inset 0 0 0 11px #6B431F,0 6px 18px rgba(0,0,0,.18);overflow:hidden}
 .gw{position:absolute;display:flex;gap:.35cqw}
@@ -323,6 +328,9 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 .gc svg{width:13cqw;height:13cqw;display:block;margin:0 auto 1cqw;opacity:.55;transform:scaleX(-1)}
 .gc .dice{font-size:10cqw;line-height:1}
 .gm-hand .ptile.pick{animation:glow 1.1s ease-in-out infinite}
+.gm-hand .ptile.hl{box-shadow:0 0 0 3px var(--blue),0 0 12px rgba(37,99,201,.45);background:var(--blue-soft)}
+.gm-hand .ptile.new{box-shadow:0 0 0 3px var(--green);background:var(--green-soft)}
+.gm-hand .ptile .tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:9.5px;font-weight:700;border-radius:99px;padding:1px 5px;pointer-events:none}
 @keyframes glow{50%{box-shadow:0 0 0 4px var(--gold),0 0 14px var(--gold)}}
 .gm-you{padding:14px 14px}
 .gm-you .yl{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;display:flex;justify-content:space-between}
@@ -415,7 +423,7 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 
       <h3>Tiles that trip people up</h3>
       <div class="viz col">
-        <div class="vrow"><div class="unit"><div class="tiles" data-tiles="b1" data-size="sm"></div><div class="cap">1 Bamboo is a bird</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 12px;width:100%;justify-items:center"><div class="unit"><div class="tiles" data-tiles="b1" data-size="sm"></div><div class="cap">1 Bamboo is a bird</div></div>
         <div class="unit"><div class="tiles" data-tiles="d1" data-size="sm"></div><div class="cap">1 Dot is one big circle</div></div>
         <div class="unit"><div class="tiles" data-tiles="b8" data-size="sm"></div><div class="cap">8 Bamboo: W over M</div></div>
         <div class="unit"><div class="tiles" data-tiles="c5" data-size="sm"></div><div class="cap">伍 means 5</div></div></div>
@@ -691,9 +699,9 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
     <div class="card">
       <div class="kicker">All tiles</div>
       <ol class="howto">
-        <li><b>Another player discards a tile?</b> Tap it below.</li>
-        <li><b>You draw a tile?</b> Double-tap it below to add it to your hand.</li>
-        <li><b>You discard a tile?</b> Double-tap it in your hand.</li>
+        <li><b>You draw a tile?</b> Swipe it <b>right →</b> to add it to your hand.</li>
+        <li><b>Another player discards a tile?</b> Swipe it <b>left ←</b> below.</li>
+        <li><b>You discard a tile?</b> Swipe it <b>left ←</b> in your hand.</li>
       </ol>
       <div class="legend">
         <span><i style="background:var(--green)">★</i>Wins the game</span>
@@ -1264,6 +1272,27 @@ function tapper(container, sel, onSingle, onDouble, immediate){
   container.addEventListener("dblclick",function(e){e.preventDefault();});
 }
 
+function swiper(container, sel, onRight, onLeft, onTap){
+  var st=null;
+  container.addEventListener("pointerdown",function(e){ var el=e.target.closest(sel); if(!el) return; st={el:el,x:e.clientX,y:e.clientY,id:e.pointerId,drag:false}; });
+  container.addEventListener("pointermove",function(e){
+    if(!st||e.pointerId!==st.id) return;
+    var dx=e.clientX-st.x, dy=e.clientY-st.y;
+    if(!st.drag){
+      if(Math.abs(dx)>8&&Math.abs(dx)>Math.abs(dy)*1.2){ st.drag=true; try{st.el.setPointerCapture(e.pointerId);}catch(_){} }
+      else if(Math.abs(dy)>12){ st=null; return; }
+    }
+    if(st.drag){ var c=Math.max(-70,Math.min(70,dx)); st.el.style.transform="translateX("+c+"px)"; st.el.classList.toggle("sw-r",dx>36); st.el.classList.toggle("sw-l",dx<-36); }
+  });
+  function reset(el){ el.style.transform=""; el.classList.remove("sw-r","sw-l"); }
+  container.addEventListener("pointerup",function(e){
+    if(!st||e.pointerId!==st.id) return;
+    var dx=e.clientX-st.x, el=st.el, drag=st.drag; st=null; reset(el);
+    if(drag){ if(dx>36) onRight(el); else if(dx<-36) onLeft(el); } else onTap(el);
+  });
+  container.addEventListener("pointercancel",function(){ if(st){ reset(st.el); st=null; } });
+  container.addEventListener("contextmenu",function(e){ if(e.target.closest(sel)) e.preventDefault(); });
+}
 /* =====================================================================
    HAND COACH
    ===================================================================== */
@@ -1331,14 +1360,14 @@ var posMap=[];
 function renderCoach(){
   var A=analyze(), n=A.n;
   var st="", sub="";
-  if(n===0){st="Add your tiles"; sub="Double-tap the tiles in your hand below: 13 tiles, or 14 if you're the dealer.";}
-  else if(n<13){st=n+" of 13 tiles"; sub="Keep double-tapping tiles to add them.";}
+  if(n===0){st="Add your tiles"; sub="Swipe right → on the tiles below to add your 13 tiles (14 if you're the dealer).";}
+  else if(n<13){st=n+" of 13 tiles"; sub="Keep swiping right → on tiles to add them.";}
   else if(n===13){
     if(A.s===0){st="One tile from winning!"; sub="Watch for the green ★ tiles.";}
-    else {st="About "+plural(A.s+1,"good tile")+" to go"; sub="When you draw, double-tap that tile below.";}
+    else {st="About "+plural(A.s+1,"good tile")+" to go"; sub="When you draw, swipe right → on that tile below.";}
   } else {
     if(A.win){st="That's a winning hand!";sub="";}
-    else {st="Now discard 1 tile"; sub="Double-tap a tile in your hand to discard it. Red ↓ is the best choice.";}
+    else {st="Now discard 1 tile"; sub="Swipe left ← on a tile in your hand to discard it. Red ↓ is the best choice.";}
   }
   hStatus.textContent=st; hSub.textContent=sub;
 
@@ -1363,15 +1392,12 @@ function renderCoach(){
         g.tiles.forEach(function(k,ti){ if(tossK[k]){ marks[gi+":"+ti]=1; delete tossK[k]; } });
       });
     });
-    var pos=0;
-    hHand.innerHTML=groups.map(function(g,gi){
-      return '<div class="hgroup '+g.type+'"><div class="gl">'+g.lbl+'</div><div class="gt">'+g.tiles.map(function(k,ti){
-        var red=marks[gi+":"+ti], sel=lockMode&&lockSel.indexOf(pos)>=0;
-        posMap.push(k);
-        var html='<button class="ptile'+(red?' o-red':'')+(sel?' sel':'')+'" data-k="'+k+'" data-pos="'+pos+'" aria-label="'+name(IDS[k])+'">'+T(k)+(red?'<span class="sym">↓</span>':'')+'</button>';
-        pos++; return html;
-      }).join("")+'</div></div>';
-    }).join("");
+    var pos=0, html="";
+    groups.forEach(function(g,gi){ g.tiles.forEach(function(k,ti){
+      var red=marks[gi+":"+ti], sel=lockMode&&lockSel.indexOf(pos)>=0; posMap.push(k);
+      html+='<button class="ptile'+(red?' o-red':'')+(sel?' sel':'')+'" data-k="'+k+'" data-pos="'+pos+'" aria-label="'+name(IDS[k])+'">'+T(k)+(red?'<span class="sym">↓</span>':'')+'</button>';
+      pos++; }); });
+    hHand.innerHTML=html;
   }
   hLocked.innerHTML = S.locked.length ? '<span class="row-lbl" style="margin:4px 6px 0 0">Called sets</span>'+S.locked.map(function(s){return '<div class="set">'+s.map(function(k){return T(k,"xs");}).join("")+'</div>';}).join("") : "";
 
@@ -1388,7 +1414,7 @@ function renderCoach(){
 
   if(lockMode){
     var picked=lockSel.map(function(p){return posMap[p];}), ok=picked.length===3&&isSet(picked);
-    hLockbar.innerHTML='<div class="lockbar"><b>Lock a called set.</b> First double-tap the discard you called to add it to your hand. Then tap the 3 tiles of the set in your hand.'+
+    hLockbar.innerHTML='<div class="lockbar"><b>Lock a called set.</b> First swipe right → on the discard you called to add it to your hand. Then tap the 3 tiles of the set in your hand.'+
       '<div class="toolbar"><button class="tbtn solid" id="lk-ok" '+(ok?'':'disabled')+'>Lock set</button><button class="tbtn" id="lk-x">Cancel</button></div></div>';
     document.getElementById("lk-ok").onclick=function(){
       snap(); var p2=lockSel.map(function(p){return posMap[p];});
@@ -1409,31 +1435,34 @@ function renderCoach(){
 
   var sc=countsOf(S.seen), chips="";
   for(var k2=0;k2<34;k2++) if(sc[k2]) chips+='<button class="chip-t" data-k="'+k2+'" aria-label="Remove one '+name(IDS[k2])+'">'+T(k2,"xs")+(sc[k2]>1?'<b>×'+sc[k2]+'</b>':'')+'</button>';
-  hSeen.innerHTML = chips || '<span class="small muted">Nothing yet. Tap a tile above when another player discards it.</span>';
+  hSeen.innerHTML = chips || '<span class="small muted">Nothing yet. Swipe a tile above left ← when another player discards it.</span>';
   document.getElementById("c-undo").disabled=!hist.length;
   document.getElementById("c-lock").disabled=lockMode||S.hand.length<3;
   var hdr=document.querySelector("header"); if(hdr) document.documentElement.style.setProperty("--hdr",hdr.offsetHeight+"px");
 }
 
-tapper(hPick,".ptile",function(el){
-  var k=+el.getAttribute("data-k"), rem=remaining();
-  if(!rem[k]){toast("All 4 "+name(IDS[k])+" are already counted");return;}
-  snap(); S.seen.push(k); save(); renderCoach(); toast(name(IDS[k])+" discarded by another player",undo);
-},function(el){
-  var k=+el.getAttribute("data-k"), rem=remaining();
+function coachDraw(k){
+  var rem=remaining();
   if(total()>=14){toast("You have 14 tiles. Discard 1 first.");return;}
   if(!rem[k]){toast("No "+name(IDS[k])+" left");return;}
-  snap(); S.hand.push(k); save(); renderCoach(); toast("Drew "+name(IDS[k]),undo);
-});
-tapper(hHand,".ptile",function(el){
-  if(lockMode){ var p=+el.getAttribute("data-pos"), i=lockSel.indexOf(p);
-    if(i>=0) lockSel.splice(i,1); else if(lockSel.length<3) lockSel.push(p); renderCoach(); return; }
-  toast("Double-tap a tile in your hand to discard it");
-},function(el){
+  snap(); S.hand.push(k); save(); renderCoach(); toast("Added "+name(IDS[k])+" to your hand",undo);
+}
+function coachSeen(k){
+  var rem=remaining();
+  if(!rem[k]){toast("All 4 "+name(IDS[k])+" are already counted");return;}
+  snap(); S.seen.push(k); save(); renderCoach(); toast(name(IDS[k])+" discarded by another player",undo);
+}
+swiper(hPick,".ptile",function(el){coachDraw(+el.getAttribute("data-k"));},function(el){coachSeen(+el.getAttribute("data-k"));},
+  function(){toast("Swipe right → to add it to your hand. Swipe left ← if another player discarded it.");});
+swiper(hHand,".ptile",function(){toast("It's already in your hand. Swipe left ← to discard it.");},function(el){
   if(lockMode) return;
   var k=+el.getAttribute("data-k"); snap();
   S.hand.splice(S.hand.indexOf(k),1); S.seen.push(k); save(); renderCoach(); toast("Discarded "+name(IDS[k]),undo);
-},function(){return lockMode;});
+},function(el){
+  if(lockMode){ var p=+el.getAttribute("data-pos"), i=lockSel.indexOf(p);
+    if(i>=0) lockSel.splice(i,1); else if(lockSel.length<3) lockSel.push(p); renderCoach(); return; }
+  toast("Swipe left ← on a tile in your hand to discard it.");
+});
 hSeen.addEventListener("click",function(e){
   var b=e.target.closest(".chip-t"); if(!b) return;
   var k=+b.getAttribute("data-k"); snap(); S.seen.splice(S.seen.indexOf(k),1); save(); renderCoach(); toast("Took 1 "+name(IDS[k])+" off the list",undo);
@@ -1575,37 +1604,37 @@ var STEPS=[
   text:"<b>Take your starting tiles.</b> Starting with the dealer and going counterclockwise, everyone takes 4 tiles at a time from the wall until they have 12, then 1 more. The dealer takes 1 extra. <b>You have 13 tiles. Left, the dealer, has 14.</b>"},
  {type:"flower", text:"You were dealt a <b>Flower</b>. Flowers aren't played. <b>Tap the flower</b> in your hand to set it aside, face up."},
  {type:"choice", text:"Now you only have 12 tiles. Draw a replacement: the next tile from the wall.",
-  options:[{label:"Draw a replacement",ok:true,act:function(){Gm.hand.push("ws");Gm.wall--;},fb:"You drew a <b>South Wind</b>. You're back to 13 tiles."}]},
- {type:"next", enter:function(){gDiscard("left","b3");}, text:"<b>The dealer goes first.</b> Left already has 14 tiles, so Left <b>skips the draw</b> and discards <b>3 Bamboo</b>."},
- {type:"choice", text:"That 3 Bamboo would finish a run with your <b>4 and 5 Bamboo</b>, and Left played right before you. What do you do?",
+  options:[{label:"Draw a replacement",ok:true,act:function(){Gm.hand.push("ws");Gm.wall--;Gm.newTile="ws";},fb:"You drew a <b>South Wind</b>. You're back to 13 tiles."}]},
+ {type:"next", hl:["b4","b5"], enter:function(){gDiscard("left","b3");}, text:"<b>The dealer goes first.</b> Left already has 14 tiles, so Left <b>skips the draw</b> and discards <b>3 Bamboo</b>."},
+ {type:"choice", hl:["b4","b5"], text:"That 3 Bamboo would finish a run with your <b>4 and 5 Bamboo</b>, and Left played right before you. What do you do?",
   options:[
    {label:"Chow!",ok:true,act:function(){gTake();handRemove("b4");handRemove("b5");Gm.sets.push(["b3","b4","b5"]);Gm.turn="you";},fb:"<b>Chow!</b> Your run is now face up in front of you. It's locked in and counts as 1 of your 4 sets."},
    {label:"Pung!",ok:false,fb:"Pung needs 2 matching 3 Bamboo in your hand. Your 4 and 5 Bamboo make a run instead."},
    {label:"Pass",ok:false,fb:"You could pass, but this discard finishes a run for you, and it came from the player right before you. That means you're allowed to Chow. Try it!"}]},
  {type:"discard", target:"wn", text:"Because you took a discard, you <b>don't draw</b> this turn. Now discard 1 tile: <b>tap the glowing North Wind</b>.", why:"Good choice. North Wind doesn't match anything in your hand, and winds can't make runs, so it's your least useful tile."},
  {type:"next", enter:function(){oppTurn("right","c1");}, text:"Play passes to the player on your right. <b>Right</b> draws a tile and discards <b>1 Characters</b>. It doesn't help you."},
- {type:"choice", enter:function(){oppTurn("across","d7");}, text:"<b>Across</b> draws and discards <b>7 Dots</b>. It would finish a run with your 8 and 9 Dots. Can you call it?",
+ {type:"choice", hl:["d8","d9"], enter:function(){oppTurn("across","d7");}, text:"<b>Across</b> draws and discards <b>7 Dots</b>. It would finish a run with your 8 and 9 Dots. Can you call it?",
   options:[
    {label:"Chow!",ok:false,fb:"Not from Across. You can only Chow a discard from the player who played <b>right before you</b>, and that's Left."},
    {label:"Pung!",ok:false,fb:"Pung needs 2 matching 7 Dots in your hand, and you don't have any."},
    {label:"Pass",ok:true,fb:"Right. You can only Chow a discard from the player right before you."}]},
- {type:"choice", enter:function(){oppTurn("left","we");}, text:"<b>Left</b> draws and discards <b>East Wind</b>. You have 1 East Wind. Can you call it to make a pair?",
+ {type:"choice", hl:["we"], enter:function(){oppTurn("left","we");}, text:"<b>Left</b> draws and discards <b>East Wind</b>. You have 1 East Wind. Can you call it to make a pair?",
   options:[
    {label:"Call it for a pair",ok:false,fb:"You can't call a discard to make a pair, unless that pair finishes your winning hand. Your hand isn't finished yet."},
    {label:"Pung!",ok:false,fb:"Pung needs 2 East Winds in your hand. You have 1."},
    {label:"Pass",ok:true,fb:"Right. You can only call a discard for a pair when it wins you the game."}]},
  {type:"choice", enter:function(){Gm.turn="you";}, text:"<b>Your turn.</b> Draw the next tile from the wall.",
-  options:[{label:"Draw a tile",ok:true,act:function(){Gm.hand.push("d4");Gm.wall--;},fb:"You drew <b>4 Dots</b>. It finishes a run with your 2 and 3 Dots!"}]},
+  options:[{label:"Draw a tile",ok:true,act:function(){Gm.hand.push("d4");Gm.wall--;Gm.newTile="d4";Gm.hl=["d2","d3"];},fb:"You drew <b>4 Dots</b>. It finishes a run with your 2 and 3 Dots!"}]},
  {type:"discard", target:"ws", text:"You now have 14 tiles, counting your face-up set, so discard 1: <b>tap the glowing South Wind</b>.", why:"South Wind is on its own, and it can only ever make a pair or 3 of a kind. It's the easiest tile to let go."},
  {type:"next", enter:function(){oppTurn("right","b9");}, text:"<b>Right</b> draws and discards <b>9 Bamboo</b>. Nothing for you."},
- {type:"choice", enter:function(){oppTurn("across","dr");}, text:"<b>Across</b> draws and discards <b>Red Dragon</b>. You have 2 Red Dragons!",
+ {type:"choice", hl:["dr"], enter:function(){oppTurn("across","dr");}, text:"<b>Across</b> draws and discards <b>Red Dragon</b>. You have 2 Red Dragons!",
   options:[
    {label:"Pung!",ok:true,act:function(){gTake();handRemove("dr");handRemove("dr");Gm.sets.push(["dr","dr","dr"]);Gm.turn="you";},fb:"<b>Pung!</b> Your 3 Red Dragons go face up. Because you called it, the turn jumps to you, so <b>Left gets skipped</b> this time."},
    {label:"Chow!",ok:false,fb:"Dragons can't make runs. Also, you can only Chow from the player right before you."},
    {label:"Pass",ok:false,fb:"You could pass, but this makes 3 of a kind, and you can Pung a discard from <b>any</b> player. Take it!"}]},
  {type:"discard", target:"d9", text:"You don't draw after calling. Discard 1: <b>tap the glowing 9 Dots</b>.", why:"9 is an end number, so only 7-8-9 can use it, and Across already discarded a 7 Dots. Its chances are low."},
  {type:"next", enter:function(){oppTurn("right","wn");}, text:"Play continues with the player on your right. <b>Right</b> draws and discards <b>North Wind</b>."},
- {type:"choice", enter:function(){oppTurn("across","c2");oppTurn("left","c6");},
+ {type:"choice", hl:["c7","c8"], enter:function(){oppTurn("across","c2");oppTurn("left","c6");},
   text:"<b>Across</b> discards 2 Characters. Then <b>Left</b> discards <b>6 Characters</b>. It would finish a run with your 7 and 8 Characters, and Left played right before you. What do you do?",
   options:[
    {label:"Chow!",ok:true,act:function(){gTake();Gm.opp.across.sets.push(["c6","c6","c6"]);Gm.turn="across";},fb:"You called Chow, but <b>Across called Pung</b> on the same tile! <b>Pung beats Chow</b>, so Across takes it."},
@@ -1613,10 +1642,10 @@ var STEPS=[
  {type:"next", enter:function(){gDiscard("across","b1");oppTurn("left","d6");},
   text:"Across puts the Pung face up and discards <b>1 Bamboo</b>. Play continues with the player on Across's right, which is <b>Left</b>. Left draws and discards <b>6 Dots</b>."},
  {type:"choice", enter:function(){Gm.turn="you";}, text:"<b>Your turn.</b> Draw the next tile from the wall.",
-  options:[{label:"Draw a tile",ok:true,act:function(){Gm.hand.push("c9");Gm.wall--;},fb:"You drew <b>9 Characters</b>. That finishes a 7-8-9 Characters run!"}]},
+  options:[{label:"Draw a tile",ok:true,act:function(){Gm.hand.push("c9");Gm.wall--;Gm.newTile="c9";Gm.hl=["c7","c8"];},fb:"You drew <b>9 Characters</b>. That finishes a 7-8-9 Characters run!"}]},
  {type:"discard", target:"d8", text:"You have 3 sets plus an East Wind. Discard your last loose tile: <b>tap the glowing 8 Dots</b>.", why:"Without the 9 Dots, your 8 Dots has nothing to work with. Keeping East Wind gives you a shot at the pair you need."},
- {type:"next", text:"<b>You're one tile away from winning!</b> You need 1 more East Wind to make your pair. Remember: you <b>can</b> call a discard for a pair when it wins you the game."},
- {type:"choice", enter:function(){oppTurn("right","we");}, text:"<b>Right</b> draws and discards <b>East Wind</b>!",
+ {type:"next", hl:["we"], text:"<b>You're one tile away from winning!</b> You need 1 more East Wind to make your pair. Remember: you <b>can</b> call a discard for a pair when it wins you the game."},
+ {type:"choice", hl:["we"], enter:function(){oppTurn("right","we");}, text:"<b>Right</b> draws and discards <b>East Wind</b>!",
   options:[
    {label:"Mahjong!",ok:true,act:function(){gTake();Gm.hand.push("we");Gm.done=true;}},
    {label:"Pung!",ok:false,fb:"You only have 1 East Wind, and Pung needs 2."},
@@ -1624,7 +1653,7 @@ var STEPS=[
  {type:"end"}
 ];
 
-function gGo(i){ Gm.step=i; Gm.fb=null; Gm.fbok=false; Gm.sel=null; Gm.after=false; var st=STEPS[i]; if(st.enter) st.enter(); renderGame(); var m=document.getElementById("gm-msg"); if(m&&i>0) m.scrollIntoView({behavior:"smooth",block:"nearest"}); }
+function gGo(i){ Gm.step=i; Gm.fb=null; Gm.fbok=false; Gm.sel=null; Gm.after=false; var st=STEPS[i]; Gm.hl=st.hl||[]; Gm.newTile=null; if(st.enter) st.enter(); renderGame(); var m=document.getElementById("gm-msg"); if(m&&i>0) m.scrollIntoView({behavior:"smooth",block:"nearest"}); }
 function gNext(){ gGo(Gm.step+1); }
 
 function seatHTML(key){
@@ -1634,7 +1663,7 @@ function seatHTML(key){
 }
 function tw(id,cls){return '<span class="tw'+(cls?' '+cls:'')+'">'+tileSVG(id,"xs")+'</span>';}
 function tableHTML(){
-  var h='<div class="gt">';
+  var h='<div class="gtable">';
   var stacks=Math.ceil(Gm.wall/2), order=["top","left","bottom","right"];
   order.forEach(function(side,i){ var have=Math.max(0,Math.min(18,stacks-i*18)); h+='<div class="gw '+side+'">';
     for(var j=0;j<18;j++) h+='<span class="st'+(j>=have?' gone':'')+'"></span>'; h+='</div>'; });
@@ -1680,9 +1709,12 @@ function renderGame(){
   var sorted=Gm.hand.slice().sort(function(a,b){return I(a)-I(b);});
   var yh='<div class="yl"><span>Your hand'+(Gm.turn==="you"?' · your turn':'')+'</span><span>'+(dealt?Gm.hand.length+3*Gm.sets.length+' tiles':'')+'</span></div>';
   var canTap = (st.type==="discard"||st.type==="flower") && !Gm.after;
+  var newDone=false;
   yh+='<div class="gm-hand">'+(dealt?sorted.map(function(id){
-    var cls='ptile'; if(st.type==="flower"&&id[0]==="f") cls+=' pick'; if(st.type==="discard"&&!Gm.after&&id===st.target&&Gm.sel!==id) cls+=' pick'; if(Gm.sel===id) cls+=' up';
-    return '<button class="'+cls+'" data-id="'+id+'"'+(canTap?'':' tabindex="-1"')+'>'+tileSVG(id,"sm")+'</button>';
+    var cls='ptile', tag='';
+    if(Gm.newTile===id&&!newDone){ cls+=' new'; tag='<span class="tag">NEW</span>'; newDone=true; }
+    else if((Gm.hl||[]).indexOf(id)>=0) cls+=' hl'; if(st.type==="flower"&&id[0]==="f") cls+=' pick'; if(st.type==="discard"&&!Gm.after&&id===st.target&&Gm.sel!==id) cls+=' pick'; if(Gm.sel===id) cls+=' up';
+    return '<button class="'+cls+'" data-id="'+id+'"'+(canTap?'':' tabindex="-1"')+'>'+tileSVG(id,"sm")+tag+'</button>';
   }).join(""):'<span class="small muted" style="padding:6px">Your tiles will appear here.</span>')+'</div>';
   you.innerHTML=yh;
   /* wire */
@@ -1715,6 +1747,7 @@ document.getElementById("gm-you").addEventListener("click",function(e){
 
 /* ---------- segments ---------- */
 function showSeg(v){
+  toastEl.classList.remove("on");
   document.querySelectorAll("[data-seg]").forEach(function(x){x.classList.toggle("on",x.getAttribute("data-seg")===v);});
   document.getElementById("coach-pane").style.display=v==="coach"?"":"none";
   document.getElementById("practice-pane").style.display=v==="practice"?"":"none";
@@ -1730,6 +1763,7 @@ window.__mj={shanten:shanten,splitWin:splitWin,bestGroups:bestGroups,countsOf:co
 /* ---------- tabs ---------- */
 var TABS=["learn","tiles","turn","coach","won"];
 function route(){
+  if(typeof toastEl!=="undefined") toastEl.classList.remove("on");
   var h=(location.hash||"").replace("#","");
   var seg=null;
   if(h==="practice"||h==="quiz"){ seg=h; h="coach"; }
