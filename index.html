@@ -171,7 +171,7 @@ details.acc .body{padding:0 16px 16px}
 /* bottom nav */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
   border-top:1px solid #E4E8E6;padding-bottom:env(safe-area-inset-bottom)}
-nav.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+nav.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);height:var(--nav-h)}
 nav.tabs a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:#7C8784;font-size:12.5px;font-weight:700}
 nav.tabs a svg{width:25px;height:25px}
 nav.tabs a.on{color:var(--jade)}
@@ -181,6 +181,70 @@ nav.tabs .pill{border-radius:99px;padding:3px 16px;display:grid;place-items:cent
 .footer{text-align:center;color:var(--muted);font-size:13px;padding:8px 0 4px}
 .footer b{letter-spacing:1.5px}
 a.inline{color:var(--jade);font-weight:700}
+
+/* ---------- v2: coach + practice ---------- */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#E6ECE9;border-radius:13px;padding:4px;margin-bottom:14px}
+.seg button{border:0;background:none;padding:10px;border-radius:10px;font:inherit;font-weight:700;color:var(--muted);cursor:pointer}
+.seg button.on{background:#fff;color:var(--jade);box-shadow:var(--shadow)}
+.hand{display:flex;flex-wrap:wrap;gap:5px 3px;min-height:64px;padding:12px 8px 8px;background:#F4F7F5;border-radius:12px;border:1.5px dashed var(--jade-line);margin-top:8px;align-content:flex-start}
+.hand .ptile{width:calc((100% - 27px)/10)}
+.hand .empty{color:var(--muted);font-size:14.5px;padding:8px 6px;align-self:center}
+.ptile{position:relative;border:0;background:none;padding:2px;border-radius:8px;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:pointer;transition:transform .12s}
+.ptile .tile{width:100%;pointer-events:none}
+.picker-row{display:grid;grid-template-columns:repeat(9,1fr);gap:5px 4px;margin-top:4px}
+.ptile.o-green{box-shadow:0 0 0 3px #22A35A;background:#E1F5E8}
+.ptile.o-yellow{box-shadow:0 0 0 3px #E0A800;background:#FFF4D1}
+.ptile.o-red{box-shadow:0 0 0 3px #C2342B;background:#FBE4E1}
+.ptile.out .tile{opacity:.25}
+.ptile .cnt{position:absolute;right:-3px;bottom:-5px;background:var(--ink);color:#fff;font-size:10.5px;font-weight:700;border-radius:99px;min-width:17px;height:17px;line-height:17px;text-align:center;padding:0 4px;pointer-events:none}
+.ptile.out .cnt{background:#9AA4A1}
+.ptile.pressing{transform:scale(.86);transition:transform .45s ease}
+.ptile.sel{box-shadow:0 0 0 3px var(--jade);background:var(--jade-soft)}
+.ptile .toss{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:9.5px;font-weight:700;border-radius:99px;padding:1px 5px;white-space:nowrap;pointer-events:none;z-index:2}
+.row-lbl{font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin:12px 0 2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin:10px 0 2px}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:3px solid}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tbtn{border:1.5px solid var(--jade-line);background:#fff;border-radius:99px;padding:8px 14px;font:inherit;font-size:14.5px;font-weight:700;color:var(--jade);cursor:pointer}
+.tbtn:disabled{opacity:.4;cursor:default}
+.tbtn.solid{background:var(--jade);color:#fff;border-color:var(--jade)}
+.tbtn.warn{color:var(--red);border-color:#E3A49E}
+.sticky-hand{position:sticky;top:var(--hdr,66px);z-index:15;padding:12px 12px 12px;box-shadow:0 6px 18px rgba(15,79,62,.14)}
+.c-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.c-top .tbtn{flex:none;padding:6px 12px;font-size:14px}
+.c-status{font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:700;line-height:1.2}
+.c-sub{font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+.sticky-hand .hand{margin-top:8px;min-height:52px;padding:12px 6px 6px;row-gap:14px}
+.sticky-hand .advice{margin-top:8px;padding:9px 12px;font-size:14.5px}
+.sticky-hand .advice.win .big{font-size:24px}
+.sticky-hand .locked{margin-top:4px}
+.advice{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:15.5px}
+.advice.go{background:var(--jade-soft)}
+.advice.toss{background:var(--red-soft)}
+.advice.win{background:var(--red);color:#fff;text-align:center}
+.advice.win .big{font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:700}
+.lockbar{margin-top:10px;background:var(--gold-soft);border-radius:12px;padding:12px 14px;font-size:15px}
+.locked{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.locked .set{display:flex;gap:2px;background:#EEF3F1;border-radius:9px;padding:4px}
+.locked .set .tile{width:28px}
+.seen{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:6px}
+.seen .chip-t{display:flex;align-items:center;gap:3px;border:0;background:none;padding:0;font:inherit;cursor:pointer}
+.seen .chip-t .tile{width:26px}
+.seen .chip-t b{font-size:13px;color:var(--muted)}
+.howto{font-size:14.5px;margin:0;padding-left:20px}
+.howto li{margin:3px 0}
+.toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px);transform:translate(-50%,16px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:99px;font-size:14.5px;opacity:0;transition:.2s;z-index:45;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.pq-tiles{display:flex;flex-wrap:wrap;gap:5px 3px;justify-content:center;margin:16px 0 6px}
+.pq-tiles.hand14 .tile{width:36px}
+.pq-q{font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:700;line-height:1.25}
+.btn.right{background:var(--jade-soft);border-color:var(--jade-2);color:var(--jade)}
+.btn.wrong{background:var(--red-soft);border-color:#E3A49E;color:var(--red)}
+.btn.dim{opacity:.5}
+.score{display:flex;justify-content:space-between;font-weight:700;color:var(--muted);font-size:13.5px;margin-bottom:10px;letter-spacing:.3px}
+.explain{margin-top:12px;border-radius:12px;padding:12px 14px;font-size:15.5px}
+.explain.ok{background:var(--jade-soft)}.explain.bad{background:var(--red-soft)}
 </style>
 </head>
 <body>
@@ -460,7 +524,64 @@ a.inline{color:var(--jade);font-weight:700}
   </div>
 </section>
 
+<!-- ============ COACH (v2) ============ -->
+<section class="view" id="v-coach">
+  <div class="seg" role="tablist">
+    <button class="on" data-seg="coach">Hand Coach</button>
+    <button data-seg="practice">Practice</button>
+  </div>
+
+  <div id="coach-pane">
+    <div class="card sticky-hand">
+      <div class="c-top">
+        <div><div class="c-status" id="c-status"></div><div class="c-sub" id="c-sub"></div></div>
+        <button class="tbtn" id="c-undo" aria-label="Undo">↶ Undo</button>
+      </div>
+      <div class="hand" id="c-hand"></div>
+      <div class="locked" id="c-locked"></div>
+      <div id="c-advice"></div>
+      <div id="c-lockbar"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">All tiles</div>
+      <ol class="howto">
+        <li><b>Tap</b> a tile to add it to your hand.</li>
+        <li><b>Press and hold</b> a tile when someone throws it away.</li>
+        <li>To throw away from your hand, <b>press and hold it</b> up top.</li>
+      </ol>
+      <div class="legend">
+        <span><i style="border-color:#22A35A;background:#E1F5E8"></i>Wins it</span>
+        <span><i style="border-color:#E0A800;background:#FFF4D1"></i>Helps</span>
+        <span><i style="border-color:#C2342B;background:#FBE4E1"></i>Would help, none left</span>
+      </div>
+      <p class="small muted" style="margin:4px 0 0">The number is how many are still out there.</p>
+      <div id="c-picker"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">Thrown away so far</div>
+      <div class="seen" id="c-seen"></div>
+      <p class="small muted" style="margin:10px 0 0">Tap one to take it back off the list.</p>
+    </div>
+
+    <div class="card">
+      <div class="kicker">More</div>
+      <p class="small" style="margin:0 0 4px">Called a Pung or Chow? Lock that set so the coach knows it can't change.</p>
+      <div class="toolbar" style="margin-top:6px">
+        <button class="tbtn" id="c-lock">Lock a called set</button>
+        <button class="tbtn warn" id="c-new">New game</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="practice-pane" style="display:none">
+    <div class="card" id="pq"></div>
+  </div>
+</section>
+
 </main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- Tile sheet -->
 <div class="sheet-bg" id="sheet-bg"></div>
@@ -478,6 +599,7 @@ a.inline{color:var(--jade);font-weight:700}
     <a href="#learn" data-tab="learn"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></span>Learn</a>
     <a href="#tiles" data-tab="tiles"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="8" height="12" rx="2"/><rect x="13" y="7" width="8" height="12" rx="2"/></svg></span>Tiles</a>
     <a href="#turn" data-tab="turn"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg></span>My Turn</a>
+    <a href="#coach" data-tab="coach"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5 5.6.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.6-.8z"/></svg></span>Coach</a>
     <a href="#won" data-tab="won"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/><path d="M12 13v4M8.5 20h7"/></svg></span>Won?</a>
   </div>
 </nav>
@@ -721,8 +843,342 @@ function updChecks(){
 checks.forEach(function(c){c.addEventListener("click",function(){c.classList.toggle("done");updChecks();});});
 creset.addEventListener("click",function(){checks.forEach(function(c){c.classList.remove("done");});updChecks();});
 
+/* ================= v2: engine ================= */
+var IDS=["d1","d2","d3","d4","d5","d6","d7","d8","d9","b1","b2","b3","b4","b5","b6","b7","b8","b9",
+         "c1","c2","c3","c4","c5","c6","c7","c8","c9","we","ws","ww","wn","dr","dg","dw"];
+function zero(){var a=[];for(var i=0;i<34;i++)a.push(0);return a;}
+function countsOf(list){var c=zero();list.forEach(function(k){c[k]++;});return c;}
+function canRun(i){return i<27 && i%9<=6;}
+/* Distance to a complete hand (4 sets + pair). -1 = complete, 0 = one tile away. */
+function shanten(c, called){
+  var need=4-called, best=8;
+  function dfs(i,m,t,p){
+    while(i<34 && c[i]===0) i++;
+    if(i>=34){
+      var mm=Math.min(m,need), tt=Math.min(t,need-mm);
+      var s=8-2*(mm+called)-tt-p; if(s<best) best=s; return;
+    }
+    if(c[i]>=3){c[i]-=3;dfs(i,m+1,t,p);c[i]+=3;}
+    if(canRun(i)&&c[i+1]&&c[i+2]){c[i]--;c[i+1]--;c[i+2]--;dfs(i,m+1,t,p);c[i]++;c[i+1]++;c[i+2]++;}
+    if(c[i]>=2){
+      if(!p){c[i]-=2;dfs(i,m,t,1);c[i]+=2;}
+      c[i]-=2;dfs(i,m,t+1,p);c[i]+=2;
+    }
+    if(i<27&&i%9<=7&&c[i+1]){c[i]--;c[i+1]--;dfs(i,m,t+1,p);c[i]++;c[i+1]++;}
+    if(i<27&&i%9<=6&&c[i+2]){c[i]--;c[i+2]--;dfs(i,m,t+1,p);c[i]++;c[i+2]++;}
+    c[i]--;dfs(i,m,t,p);c[i]++;
+  }
+  dfs(0,0,0,0);
+  return best;
+}
+/* Split a complete hand into sets + pair (null if not complete). */
+function splitWin(c0, called){
+  var need=4-called;
+  function melds(c,out){
+    var i=0; while(i<34&&c[i]===0)i++;
+    if(i>=34) return out.length===need ? out : false;
+    if(c[i]>=3){var d=c.slice();d[i]-=3;var r=melds(d,out.concat([[i,i,i]]));if(r)return r;}
+    if(canRun(i)&&c[i+1]&&c[i+2]){var e=c.slice();e[i]--;e[i+1]--;e[i+2]--;var r2=melds(e,out.concat([[i,i+1,i+2]]));if(r2)return r2;}
+    return false;
+  }
+  for(var k=0;k<34;k++){
+    if(c0[k]>=2){var c=c0.slice();c[k]-=2;var m=melds(c,[]);if(m)return {pair:[k,k],sets:m};}
+  }
+  return null;
+}
+function isSet(a){
+  a=a.slice().sort(function(x,y){return x-y;});
+  if(a.length!==3) return false;
+  if(a[0]===a[1]&&a[1]===a[2]) return "pung";
+  if(canRun(a[0])&&a[1]===a[0]+1&&a[2]===a[0]+2&&Math.floor(a[0]/9)===Math.floor(a[2]/9)) return "chow";
+  return false;
+}
+function T(k,size){return tileSVG(IDS[k],size||"sm");}
+var toastEl=document.getElementById("toast"), toastTimer;
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add("on");clearTimeout(toastTimer);toastTimer=setTimeout(function(){toastEl.classList.remove("on");},1800);}
+
+/* tap vs press-and-hold */
+function pressable(container,onTap,onHold){
+  var timer,sx,sy,el,held;
+  container.addEventListener("pointerdown",function(e){
+    el=e.target.closest(".ptile"); if(!el) return;
+    held=false; sx=e.clientX; sy=e.clientY; el.classList.add("pressing");
+    var target=el;
+    timer=setTimeout(function(){held=true;target.classList.remove("pressing");
+      try{if(navigator.vibrate)navigator.vibrate(25);}catch(_){}
+      onHold(target);},450);
+  });
+  container.addEventListener("pointermove",function(e){
+    if(el&&(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)){clearTimeout(timer);el.classList.remove("pressing");el=null;}
+  });
+  function end(e){ if(!el) return; clearTimeout(timer); el.classList.remove("pressing");
+    var t=el; el=null; if(!held&&e.type==="pointerup") onTap(t); }
+  container.addEventListener("pointerup",end);
+  container.addEventListener("pointercancel",end);
+  container.addEventListener("pointerleave",end);
+  container.addEventListener("contextmenu",function(e){if(e.target.closest(".ptile"))e.preventDefault();});
+}
+
+/* ================= v2: Hand Coach ================= */
+var KEY="ssmj-coach-v1";
+var S={hand:[],locked:[],seen:[]}, hist=[], lockMode=false, lockSel=[];
+try{var saved=JSON.parse(localStorage.getItem(KEY)||"null"); if(saved&&saved.hand) S=saved;}catch(_){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}}
+function snap(){hist.push(JSON.stringify(S)); if(hist.length>60) hist.shift();}
+function lockedCounts(){var c=zero();S.locked.forEach(function(s){s.forEach(function(k){c[k]++;});});return c;}
+function remaining(){
+  var h=countsOf(S.hand), l=lockedCounts(), s=countsOf(S.seen), r=zero();
+  for(var k=0;k<34;k++) r[k]=Math.max(0,4-h[k]-l[k]-s[k]);
+  return r;
+}
+function total(){return S.hand.length+3*S.locked.length;}
+function plural(n,w){return n+" "+w+(n===1?"":"s");}
+
+function analyze(){
+  var c=countsOf(S.hand), called=S.locked.length, n=total(), rem=remaining();
+  var out={n:n,c:c,rem:rem,colors:zero().map(function(){return "";}),s:null,toss:[],win:null};
+  if(n===0) return out;
+  var s0=shanten(c,called); out.s=s0;
+  if(n===14){
+    if(s0===-1){out.win=splitWin(c,called);return out;}
+    var best=null;
+    for(var k=0;k<34;k++){ if(!c[k]) continue;
+      c[k]--; var s=shanten(c,called), uke=0;
+      for(var j=0;j<34;j++){ if(!rem[j]) continue; c[j]++; if(shanten(c,called)<s) uke+=rem[j]; c[j]--; }
+      c[k]++;
+      var cand={k:k,s:s,uke:uke};
+      if(!best||s<best[0].s||(s===best[0].s&&uke>best[0].uke)) best=[cand];
+      else if(s===best[0].s&&uke===best[0].uke) best.push(cand);
+    }
+    out.toss=best||[]; return out;
+  }
+  for(var j2=0;j2<34;j2++){
+    if(c[j2]+lockedCounts()[j2]>=4) continue;
+    c[j2]++; var s1=shanten(c,called); c[j2]--;
+    var col = (s1===-1&&n===13) ? "green" : (s1<s0 ? "yellow" : "");
+    if(col && rem[j2]===0) col="red";
+    out.colors[j2]=col;
+  }
+  return out;
+}
+
+var hHand=document.getElementById("c-hand"), hPick=document.getElementById("c-picker"),
+    hSeen=document.getElementById("c-seen"), hStatus=document.getElementById("c-status"),
+    hSub=document.getElementById("c-sub"), hAdv=document.getElementById("c-advice"),
+    hLocked=document.getElementById("c-locked"), hLockbar=document.getElementById("c-lockbar");
+
+function renderCoach(){
+  var A=analyze(), n=A.n, sortedHand=S.hand.slice().sort(function(a,b){return a-b;});
+  /* status */
+  var st="", sub="";
+  if(n===0){st="Add your tiles"; sub="Tap the 13 tiles in your hand below (14 if you're the dealer).";}
+  else if(n<13){st=n+" of 13 tiles"; sub="Keep tapping tiles to add them. Colors get sharper once all 13 are in.";}
+  else if(n===13){
+    if(A.s===0){st="One tile from winning!"; sub="Watch for the green tiles.";}
+    else {st="About "+plural(A.s+1,"good tile")+" to go"; sub="When you draw, tap that tile to add it.";}
+  } else {
+    if(A.win){st="That's a winning hand!";sub="";}
+    else {st="Now throw one away"; sub="Press and hold a tile in your hand to throw it away.";}
+  }
+  hStatus.textContent=st; hSub.textContent=sub;
+  /* hand */
+  var tossK={}; A.toss.forEach(function(t){tossK[t.k]=true;});
+  var marked={};
+  hHand.innerHTML = sortedHand.length ? sortedHand.map(function(k,i){
+    var badge=""; if(tossK[k]&&!marked[k]&&A.toss.length<=4){badge='<span class="toss">TOSS</span>';marked[k]=1;}
+    var sel = lockMode&&lockSel.indexOf(i)>=0 ? " sel":"";
+    return '<button class="ptile'+sel+'" data-i="'+i+'" data-k="'+k+'" aria-label="'+name(IDS[k])+'">'+T(k)+badge+'</button>';
+  }).join("") : '<span class="empty">Your tiles will show up here.</span>';
+  hHand._sorted=sortedHand;
+  /* locked */
+  hLocked.innerHTML = S.locked.length ? '<div class="row-lbl" style="width:100%;margin:6px 0 0">Called sets (locked)</div>'+S.locked.map(function(s){return '<div class="set">'+s.map(function(k){return T(k,"xs");}).join("")+'</div>';}).join("") : "";
+  /* advice */
+  var adv="";
+  if(A.win){
+    adv='<div class="advice win"><div class="big">“Mahjong!”</div><div>Lay out all 14 tiles so the table can check.</div></div>';
+  } else if(n===14 && A.toss.length){
+    var names=A.toss.slice(0,3).map(function(t){return "<b>"+name(IDS[t.k])+"</b>";}).join(" or ");
+    var t0=A.toss[0];
+    adv='<div class="advice toss">Best to throw away: '+names+'.'+(t0.uke? ' That leaves <b>'+t0.uke+'</b> helpful '+(t0.uke===1?'tile':'tiles')+' still out there.':'')+'</div>';
+  } else if(n===13 && A.s===0){
+    var waits=[]; A.colors.forEach(function(col,k){if(col==="green")waits.push(name(IDS[k])+" ("+A.rem[k]+" left)");});
+    adv='<div class="advice go">You win with: <b>'+(waits.join(", ")||"no tiles left. Consider changing your hand")+'</b></div>';
+  }
+  hAdv.innerHTML=adv;
+  /* lock bar */
+  if(lockMode){
+    var picked=lockSel.map(function(i){return sortedHand[i];}), ok=picked.length===3&&isSet(picked);
+    hLockbar.innerHTML='<div class="lockbar"><b>Lock a called set.</b> Add the tile you called first, then tap the 3 tiles of the set in your hand.'+
+      '<div class="toolbar"><button class="tbtn solid" id="lk-ok" '+(ok?'':'disabled')+'>Lock set</button><button class="tbtn" id="lk-x">Cancel</button></div></div>';
+    document.getElementById("lk-ok").onclick=function(){
+      snap(); var picked2=lockSel.map(function(i){return sortedHand[i];});
+      picked2.forEach(function(k){S.hand.splice(S.hand.indexOf(k),1);});
+      S.locked.push(picked2.sort(function(a,b){return a-b;})); lockMode=false; lockSel=[]; save(); renderCoach(); toast("Set locked");
+    };
+    document.getElementById("lk-x").onclick=function(){lockMode=false;lockSel=[];renderCoach();};
+  } else hLockbar.innerHTML="";
+  /* picker */
+  var rows=[["Dots",0,9],["Bamboo",9,18],["Characters",18,27],["Winds & Dragons",27,34]];
+  hPick.innerHTML=rows.map(function(r){
+    var cells=""; for(var k=r[1];k<r[2];k++){
+      var col=A.colors[k], out=A.rem[k]===0;
+      cells+='<button class="ptile'+(col?' o-'+col:'')+(out?' out':'')+'" data-k="'+k+'" aria-label="'+name(IDS[k])+', '+A.rem[k]+' left">'+T(k)+'<span class="cnt">'+A.rem[k]+'</span></button>';
+    }
+    return '<div class="row-lbl">'+r[0]+'</div><div class="picker-row">'+cells+'</div>';
+  }).join("");
+  /* seen */
+  var sc=countsOf(S.seen), chips="";
+  for(var k2=0;k2<34;k2++) if(sc[k2]) chips+='<button class="chip-t" data-k="'+k2+'" aria-label="Remove one '+name(IDS[k2])+'">'+T(k2,"xs")+(sc[k2]>1?'<b>×'+sc[k2]+'</b>':'')+'</button>';
+  hSeen.innerHTML = chips || '<span class="small muted">Nothing yet. Press and hold a tile above when someone throws it away.</span>';
+  document.getElementById("c-undo").disabled=!hist.length;
+  var hdr=document.querySelector("header"); if(hdr) document.documentElement.style.setProperty("--hdr",hdr.offsetHeight+"px");
+  document.getElementById("c-lock").disabled=lockMode||S.hand.length<3;
+}
+
+pressable(hPick,function(el){
+  var k=+el.getAttribute("data-k"), rem=remaining();
+  if(total()>=14){toast("You have 14 tiles. Throw one away first.");return;}
+  if(!rem[k]){toast("No "+name(IDS[k])+" left");return;}
+  snap(); S.hand.push(k); save(); renderCoach();
+},function(el){
+  var k=+el.getAttribute("data-k"), rem=remaining();
+  if(!rem[k]){toast("All 4 "+name(IDS[k])+" are already counted");return;}
+  snap(); S.seen.push(k); save(); renderCoach(); toast(name(IDS[k])+" thrown away");
+});
+pressable(hHand,function(el){
+  if(lockMode){var i=+el.getAttribute("data-i"), p=lockSel.indexOf(i);
+    if(p>=0) lockSel.splice(p,1); else if(lockSel.length<3) lockSel.push(i);
+    renderCoach(); return;}
+  toast("Press and hold to throw it away");
+},function(el){
+  if(lockMode) return;
+  var k=+el.getAttribute("data-k"); snap();
+  S.hand.splice(S.hand.indexOf(k),1); S.seen.push(k); save(); renderCoach(); toast("Threw away "+name(IDS[k]));
+});
+hSeen.addEventListener("click",function(e){
+  var b=e.target.closest(".chip-t"); if(!b) return;
+  var k=+b.getAttribute("data-k"); snap(); S.seen.splice(S.seen.indexOf(k),1); save(); renderCoach(); toast("Removed one "+name(IDS[k]));
+});
+document.getElementById("c-undo").onclick=function(){ if(!hist.length) return; S=JSON.parse(hist.pop()); lockMode=false; lockSel=[]; save(); renderCoach(); };
+document.getElementById("c-lock").onclick=function(){ lockMode=true; lockSel=[]; renderCoach(); };
+var newArmed=false;
+document.getElementById("c-new").onclick=function(){
+  var b=this;
+  if(!newArmed){newArmed=true;b.textContent="Tap again to clear";setTimeout(function(){newArmed=false;b.textContent="New game";},2500);return;}
+  snap(); S={hand:[],locked:[],seen:[]}; newArmed=false; b.textContent="New game"; lockMode=false; save(); renderCoach(); toast("New game. Add your tiles.");
+};
+document.querySelectorAll("[data-seg]").forEach(function(b){
+  b.addEventListener("click",function(){
+    var v=b.getAttribute("data-seg");
+    document.querySelectorAll("[data-seg]").forEach(function(x){x.classList.toggle("on",x===b);});
+    document.getElementById("coach-pane").style.display=v==="coach"?"":"none";
+    document.getElementById("practice-pane").style.display=v==="practice"?"":"none";
+    if(v==="practice"&&!PQ.cur) nextQ();
+  });
+});
+renderCoach();
+
+/* ================= v2: Practice ================= */
+var PQ={cur:null,score:0,total:0,streak:0};
+function rnd(n){return Math.floor(Math.random()*n);}
+function pick(a){return a[rnd(a.length)];}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=rnd(i+1),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+var SUITN=["Dots","Bamboo","Characters"];
+
+function qSet(){
+  var kind=pick(["run","pung","bad","bad"]), tiles, ans, why;
+  if(kind==="run"){var s=rnd(3),st=rnd(7);tiles=[s*9+st,s*9+st+1,s*9+st+2];ans="Run (Chow)";why="Three numbers in a row, all "+SUITN[s]+". That's a run.";}
+  else if(kind==="pung"){var k=rnd(34);tiles=[k,k,k];ans="3 of a kind (Pung)";why="Three identical tiles. Any tile works, including winds and dragons.";}
+  else {
+    var b=pick(["mixed","wrap","honor","gap"]);
+    if(b==="mixed"){var st2=rnd(7),s1=rnd(3),s2=(s1+1+rnd(2))%3;tiles=[s1*9+st2,s2*9+st2+1,s1*9+st2+2];why="The numbers are in a row, but the suits don't match. A run must be all one suit.";}
+    else if(b==="wrap"){var s3=rnd(3);tiles=pick([[s3*9+7,s3*9+8,s3*9],[s3*9+8,s3*9,s3*9+1]]);why="Runs don't wrap around. After 9 there's no 1.";}
+    else if(b==="honor"){tiles=pick([[27,28,29],[28,29,30],[31,32,33],[27,29,30]]);why="Winds and dragons can't make runs. Only 3 of a kind or a pair.";}
+    else {var s4=rnd(3),st3=rnd(6);tiles=[s4*9+st3,s4*9+st3+1,s4*9+st3+3];why="There's a gap. A run needs 3 numbers in a row with nothing skipped.";}
+    ans="Not a set";
+  }
+  return {q:"Is this a set?",tiles:shuffle(tiles.slice()),opts:["Run (Chow)","3 of a kind (Pung)","Not a set"],ans:ans,why:why};
+}
+function qCall(){
+  var who=pick(["left","left","across","right"]), whoTxt={left:"the player right before you (on your left)",across:"the player across from you",right:"the player on your right"}[who];
+  var s=rnd(3), n=rnd(9), t=s*9+n, kind=pick(["chow","chow","pung","none"]), hold, ans, why;
+  if(kind==="pung"){hold=[t,t];ans="Pung!";why="You hold 2 of that exact tile, so you can call Pung from anyone.";}
+  else if(kind==="chow"){
+    var opts=[]; if(n>=1&&n<=7)opts.push([t-1,t+1]); if(n<=6)opts.push([t+1,t+2]); if(n>=2)opts.push([t-2,t-1]);
+    hold=pick(opts);
+    if(who==="left"){ans="Chow!";why="It finishes a run, and it came from the player right before you, so you can call Chow.";}
+    else {ans="Can't call it";why="It would finish a run, but you can only Chow from the player right before you (on your left).";}
+  } else {
+    var o=(s+1)%3; hold=[o*9+rnd(9),27+rnd(7)]; ans="Can't call it"; why="It doesn't make a set with what you're holding.";
+  }
+  return {q:whoTxt.charAt(0).toUpperCase()+whoTxt.slice(1)+" throws this tile away. What do you do?",
+          tiles:[t].concat(hold),split:1,opts:["Chow!","Pung!","Can't call it"],ans:ans,why:why};
+}
+function winningHand(){
+  for(var tries=0;tries<200;tries++){
+    var c=zero(), ok=true;
+    for(var g=0;g<4&&ok;g++){
+      if(Math.random()<0.6){var s=rnd(3),st=rnd(7),b=s*9+st; if(c[b]>3||c[b+1]>3||c[b+2]>3){ok=false;break;} c[b]++;c[b+1]++;c[b+2]++;}
+      else {var k=rnd(34); if(c[k]>1){ok=false;break;} c[k]+=3;}
+    }
+    var p=rnd(34); if(c[p]>2) ok=false; else c[p]+=2;
+    if(ok) return c;
+  }
+  return null;
+}
+function qWin(){
+  var c=winningHand(), win=Math.random()<0.5, why;
+  if(!win){
+    for(var tries=0;tries<200;tries++){
+      var d=c.slice(), from=[],k; for(k=0;k<34;k++) if(d[k]) from.push(k);
+      var a=pick(from), b2=rnd(34); if(a===b2||d[b2]>=4) continue;
+      d[a]--; d[b2]++; if(shanten(d,0)!==-1){c=d;break;}
+    }
+  }
+  var list=[]; for(var k2=0;k2<34;k2++) for(var x=0;x<c[k2];x++) list.push(k2);
+  var sp=splitWin(c,0);
+  if(sp){ why="It's a winner: "+sp.sets.map(function(s){return s[0]===s[1]?"3× "+name(IDS[s[0]]):(s[0]%9+1)+"-"+(s[2]%9+1)+" "+SUITN[Math.floor(s[0]/9)];}).join(", ")+", plus a pair of "+name(IDS[sp.pair[0]])+"."; }
+  else { why="These 14 tiles can't all be split into 4 sets + 1 pair. "+(shanten(c,0)===0?"It's just one tile off.":"It's a few tiles off."); }
+  return {q:"Is this a winning hand?",tiles:list,big:1,opts:["Yes, Mahjong!","Not yet"],ans:sp?"Yes, Mahjong!":"Not yet",why:why};
+}
+function qName(){
+  var k=Math.random()<0.5? 18+rnd(9) : rnd(34), group;
+  if(k<27){var s=Math.floor(k/9); group=[]; for(var i=0;i<9;i++) group.push(s*9+i);}
+  else group=[27,28,29,30,31,32,33];
+  var opts=[k]; shuffle(group.slice()).forEach(function(g){if(opts.length<4&&opts.indexOf(g)<0)opts.push(g);});
+  var tip = k>=18&&k<27 ? " Read the top symbol: "+NUM[k-17]+" = "+(k-17)+"." : "";
+  return {q:"What tile is this?",tiles:[k],one:1,opts:shuffle(opts.map(function(o){return name(IDS[o]);})),ans:name(IDS[k]),why:"It's the "+name(IDS[k])+"."+tip};
+}
+function nextQ(){ PQ.cur=pick([qSet,qSet,qCall,qCall,qWin,qName])(); PQ.answered=false; renderQ(); }
+function renderQ(){
+  var q=PQ.cur, el=document.getElementById("pq"), tiles;
+  if(q.split) tiles='<div class="pq-tiles" style="align-items:center;gap:6px">'+'<div style="text-align:center">'+T(q.tiles[0],"lg")+'<div class="small muted">Thrown</div></div><div style="width:18px"></div><div style="text-align:center"><div class="tiles">'+T(q.tiles[1],"lg")+T(q.tiles[2],"lg")+'</div><div class="small muted">Your tiles</div></div></div>';
+  else if(q.one) tiles='<div class="pq-tiles">'+T(q.tiles[0],"xl")+'</div>';
+  else tiles='<div class="pq-tiles'+(q.big?' hand14':'')+'">'+q.tiles.map(function(k){return T(k,q.big?"sm":"lg");}).join("")+'</div>';
+  el.innerHTML='<div class="score"><span>PRACTICE</span><span>Score '+PQ.score+'/'+PQ.total+(PQ.streak>1?' · 🔥 '+PQ.streak+' in a row':'')+'</span></div>'+
+    '<div class="pq-q">'+q.q+'</div>'+tiles+
+    '<div class="btn-stack" id="pq-opts">'+q.opts.map(function(o){return '<button class="btn outline" data-o="'+o.replace(/"/g,"&quot;")+'">'+o+'</button>';}).join("")+'</div>'+
+    '<div id="pq-exp"></div>';
+  document.getElementById("pq-opts").onclick=function(e){
+    var b=e.target.closest("button"); if(!b||PQ.answered) return;
+    PQ.answered=true; PQ.total++;
+    var pickO=b.getAttribute("data-o"), right=pickO===q.ans;
+    if(right){PQ.score++;PQ.streak++;}else PQ.streak=0;
+    this.querySelectorAll("button").forEach(function(x){
+      var o=x.getAttribute("data-o"); x.classList.remove("outline");
+      if(o===q.ans) x.classList.add("right"); else if(x===b) x.classList.add("wrong"); else x.classList.add("outline","dim");
+    });
+    document.getElementById("pq-exp").innerHTML='<div class="explain '+(right?'ok':'bad')+'"><b>'+(right?pick(["Nice!","Correct!","You got it!"]):"Not quite.")+'</b> '+q.why+'</div>'+
+      '<button class="btn" style="margin-top:12px;text-align:center" id="pq-next">Next question →</button>';
+    document.getElementById("pq-next").onclick=nextQ;
+    setTimeout(function(){document.getElementById("pq-next").scrollIntoView({behavior:"smooth",block:"nearest"});},60);
+    var sc=document.querySelector("#pq .score span:last-child"); sc.textContent="Score "+PQ.score+"/"+PQ.total+(PQ.streak>1?' · 🔥 '+PQ.streak+' in a row':'');
+  };
+}
+window.__mj={shanten:shanten,splitWin:splitWin,countsOf:countsOf,IDS:IDS,qWin:qWin,qSet:qSet,qCall:qCall,qName:qName,winningHand:winningHand};
+
 /* tabs */
-var TABS=["learn","tiles","turn","won"];
+var TABS=["learn","tiles","turn","coach","won"];
 function route(){
   var h=(location.hash||"").replace("#","");
   if(TABS.indexOf(h)<0) h="learn";
