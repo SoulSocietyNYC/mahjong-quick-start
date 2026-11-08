@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#141414">
+<meta name="theme-color" content="#0B1410">
 <title>Mahjong Quick Start · Soul Society</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -345,25 +345,25 @@ a.inline{color:var(--jade);font-weight:700;display:inline-block;margin-top:6px}
 /* =================== GRAFFITI THEME (tiles untouched) =================== */
 :root{
   --wall:#1A1A1A; --paper:#FFF7E3; --ink:#121212; --muted:#3E3A36;
-  --pink:#FF2E88; --yel:#FFE135; --cyan:#22D3EE; --lime:#8BE04E; --orange:#FF7A1A;
-  --jade:#121212; --jade-2:#121212; --jade-soft:#FFF0A8; --jade-line:#121212; --viz:#F3ECD8;
-  --ivory:#1A1A1A; --card:#FFF7E3; --gold-soft:#FFF0A8; --red-soft:#FFD9E8;
+  --pink:#D8262F; --yel:#E9B53A; --cyan:#3CC48C; --lime:#8BE04E; --orange:#FF7A1A; --jadeB:#0F6B4A; --jadeD:#0B3F2E;
+  --jade:#121212; --jade-2:#121212; --jade-soft:#F8E7B5; --jade-line:#121212; --viz:#F3ECD8;
+  --ivory:#1A1A1A; --card:#FFF7E3; --gold-soft:#F8E7B5; --red-soft:#F8D5D3;
   --radius:14px; --shadow:5px 5px 0 #121212;
 }
-html,body{background:var(--wall)}
+html,body{background:#0F1A16}
 body{font-family:"Space Grotesk",system-ui,sans-serif;color:var(--ink);
-  background-color:#1A1A1A;
+  background-color:#0F1A16;
   background-image:
-    radial-gradient(circle at 12% 18%,rgba(255,46,136,.22) 0,transparent 28%),
-    radial-gradient(circle at 88% 42%,rgba(34,211,238,.18) 0,transparent 30%),
-    radial-gradient(circle at 30% 78%,rgba(255,225,53,.14) 0,transparent 26%),
+    radial-gradient(circle at 12% 18%,rgba(216,38,47,.22) 0,transparent 28%),
+    radial-gradient(circle at 88% 42%,rgba(60,196,140,.20) 0,transparent 30%),
+    radial-gradient(circle at 30% 78%,rgba(233,181,58,.14) 0,transparent 26%),
     repeating-linear-gradient(0deg,transparent 0 26px,rgba(255,255,255,.045) 26px 28px),
     repeating-linear-gradient(90deg,transparent 0 58px,rgba(255,255,255,.035) 58px 60px);
   background-attachment:fixed}
 h1,h2,h3{font-family:"Bungee",Impact,sans-serif;font-weight:400;letter-spacing:.3px}
 
 /* header: spray tag + drips */
-header{background:#121212;border-bottom:4px solid var(--yel);padding-bottom:14px;position:sticky;overflow:visible}
+header{background:#0B1410;border-bottom:4px solid var(--cyan);padding-bottom:14px;position:sticky;overflow:visible}
 header .brand h1{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-size:23px;white-space:nowrap;color:var(--yel);text-shadow:3px 3px 0 var(--pink);letter-spacing:.5px;line-height:1.05}
 header .brand small{font-family:"Permanent Marker",cursive;font-size:15px;letter-spacing:1px;text-transform:none;color:var(--cyan);opacity:1;margin-top:4px}
 header .brand-mark{transform:rotate(-6deg);filter:drop-shadow(3px 3px 0 var(--pink))}
@@ -380,12 +380,12 @@ main{padding-top:30px}
 .view>.card:nth-of-type(even){transform:rotate(.35deg)}
 
 /* hero: big yellow throw-up */
-.hero{background:var(--yel);color:var(--ink);box-shadow:8px 8px 0 var(--pink),8px 8px 0 3px var(--ink)}
-.hero .kicker{color:var(--ink)}
-.hero .formula{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-size:34px;line-height:1.1;color:var(--ink)}
-.hero .formula em{color:var(--pink);text-shadow:2px 2px 0 var(--ink)}
-.hero .groups{background:rgba(18,18,18,.08);border:2px dashed var(--ink)}
-.hero .group .lbl{color:var(--ink);font-weight:700}
+.hero{background:var(--jadeB);color:#FFF7E3;box-shadow:8px 8px 0 var(--pink),8px 8px 0 3px var(--ink)}
+.hero .kicker{color:var(--yel)}
+.hero .formula{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-size:34px;line-height:1.1;color:#FFF7E3;text-shadow:2px 2px 0 var(--ink)}
+.hero .formula em{color:var(--yel);text-shadow:2px 2px 0 var(--pink)}
+.hero .groups{background:rgba(0,0,0,.18);border:2px dashed rgba(255,247,227,.6)}
+.hero .group .lbl{color:#FFF7E3;font-weight:700}
 
 /* accordions */
 details.acc summary{font-family:"Bungee",sans-serif;font-weight:400;font-size:17px}
@@ -396,36 +396,36 @@ ol.steps>li::before{background:var(--yel);color:var(--ink);border:2px solid var(
 /* callouts / viz */
 .viz{background:var(--viz);border:2px dashed #8C8370}
 .note{border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
-.note.tip{background:#D7F9FF}.note.warn{background:#FFF0A8}.note.no{background:#FFD9E8}
+.note.tip{background:#D4F1E2}.note.warn{background:#F8E7B5}.note.no{background:#F8D5D3}
 .bubble{border-color:var(--ink);color:var(--ink);background:var(--yel);font-family:"Permanent Marker",cursive;font-weight:400}
 .bubble::after{border-top-color:var(--ink)}
 .chip{background:var(--ink);color:var(--yel);font-family:"Bungee",sans-serif;font-weight:400;border-radius:6px}
 .call{border:2px solid var(--ink);background:#fff;box-shadow:3px 3px 0 var(--ink)}
 .call .say{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-weight:400;color:var(--pink);text-shadow:2px 2px 0 var(--ink);font-size:26px}
-.who.any{background:var(--cyan);color:var(--ink)}.who.left{background:var(--pink);color:#fff}
+.who.any{background:var(--jadeB);color:#fff}.who.left{background:var(--pink);color:#fff}
 .priority span.p{background:var(--ink);color:var(--yel);font-family:"Bungee",sans-serif;font-weight:400}
 .term b{font-family:"Bungee",sans-serif;font-weight:400;font-size:15px}
 
 /* buttons */
-.btn{background:var(--ink);color:var(--yel);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink);border-radius:10px;font-family:"Bungee",sans-serif;font-weight:400;letter-spacing:.3px}
+.btn{background:var(--jadeD);color:var(--yel);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink);border-radius:10px;font-family:"Bungee",sans-serif;font-weight:400;letter-spacing:.3px}
 .btn .sub{font-family:"Space Grotesk",sans-serif;color:#fff;opacity:.9}
 .btn.ghost{background:var(--yel);color:var(--ink)}
 .btn.outline{background:#fff;color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:"Space Grotesk",sans-serif;font-weight:700}
 .btn.outline .sub{color:var(--muted)}
 .btn.sel{background:var(--pink);color:#fff;box-shadow:3px 3px 0 var(--ink)}
 .btn.sel .sub{color:#fff}
-.btn.right{background:#DFFBD0;border-color:var(--ink);color:var(--ink)}
-.btn.wrong{background:#FFD9E8;border-color:var(--ink);color:var(--ink)}
+.btn.right{background:#D4F1E2;border-color:var(--ink);color:var(--ink)}
+.btn.wrong{background:#F8D5D3;border-color:var(--ink);color:var(--ink)}
 a.inline{color:var(--pink);font-family:"Permanent Marker",cursive;font-weight:400;font-size:18px}
 .tbtn{border:2px solid var(--ink);color:var(--ink);background:#fff;box-shadow:2px 2px 0 var(--ink)}
 .tbtn.solid{background:var(--ink);color:var(--yel)}
 .result{border-width:3px!important;border-color:var(--ink)!important;box-shadow:4px 4px 0 var(--ink)}
-.result.yes{background:#DFFBD0}.result.no{background:#FFD9E8}
+.result.yes{background:#D4F1E2}.result.no{background:#F8D5D3}
 .result .big,.win-banner .big,.advice.win .big{font-family:"Rubik Spray Paint","Bungee",sans-serif;font-weight:400}
-.result.yes .big{color:var(--ink)}.result.no .big{color:#C0105E}
+.result.yes .big{color:var(--ink)}.result.no .big{color:#B01E26}
 .win-banner,.advice.win{background:var(--pink);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
 .check{border:2px solid var(--ink);background:#fff}
-.check.done{background:#DFFBD0;border-color:var(--ink)}
+.check.done{background:#D4F1E2;border-color:var(--ink)}
 .check.done .box{background:var(--ink);border-color:var(--ink);color:var(--yel)}
 .check .t{font-family:"Bungee",sans-serif;font-weight:400;font-size:15.5px}
 .q{font-family:"Bungee",sans-serif;font-weight:400;font-size:17px}
@@ -434,7 +434,7 @@ a.inline{color:var(--pink);font-family:"Permanent Marker",cursive;font-weight:40
 .c-status{font-size:18px}
 .score{font-family:"Permanent Marker",cursive;letter-spacing:0;font-size:16px;color:var(--pink)}
 .explain{border:2px solid var(--ink)}
-.explain.ok{background:#DFFBD0}.explain.bad{background:#FFD9E8}
+.explain.ok{background:#D4F1E2}.explain.bad{background:#F8D5D3}
 
 /* tiles view */
 .suit-head h2{font-size:22px}
@@ -444,7 +444,7 @@ a.inline{color:var(--pink);font-family:"Permanent Marker",cursive;font-weight:40
 .corner-legend code{background:var(--pink)}
 
 /* coach / practice */
-.seg{background:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink)}
+.seg{background:var(--jadeD);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--pink)}
 .seg button{color:#ddd;font-family:"Bungee",sans-serif;font-weight:400;font-size:14px}
 .seg button.on{background:var(--yel);color:var(--ink);box-shadow:none}
 .hand{background:#fff;border:2px dashed var(--ink)}
@@ -452,17 +452,17 @@ a.inline{color:var(--pink);font-family:"Permanent Marker",cursive;font-weight:40
 .sticky-hand{box-shadow:6px 6px 0 var(--ink)}
 .gm-msg{border:3px solid var(--ink)!important}
 .gm-step{font-family:"Permanent Marker",cursive;color:var(--pink);letter-spacing:0;text-transform:none;font-size:15px}
-.gtable{background:radial-gradient(circle at 50% 45%,#2F2F2F 0%,#1E1E1E 70%) !important;box-shadow:inset 0 0 0 9px var(--pink),inset 0 0 0 12px #121212,6px 6px 0 #121212 !important}
+.gtable{background:radial-gradient(circle at 50% 45%,#1C4537 0%,#0D241C 75%) !important;box-shadow:inset 0 0 0 9px var(--pink),inset 0 0 0 12px #121212,6px 6px 0 #121212 !important}
 .pl{font-family:"Bungee",sans-serif;font-weight:400}
-.pl.on{border-color:var(--yel);box-shadow:0 0 2.5cqw var(--yel);background:rgba(255,225,53,.25)}
+.pl.on{border-color:var(--yel);box-shadow:0 0 2.5cqw var(--yel);background:rgba(233,181,58,.25)}
 .toast{background:var(--ink);border:2px solid var(--yel)}
 .toast .tundo{background:var(--yel)}
 
 /* bottom nav */
-nav.tabs{background:#121212;border-top:4px solid var(--pink)}
+nav.tabs{background:#0B1410;border-top:4px solid var(--pink)}
 nav.tabs a{color:#BDBDBD;font-family:"Bungee",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.2px}
 nav.tabs a.on{color:var(--yel)}
-nav.tabs a.on .pill{background:rgba(255,225,53,.16)}
+nav.tabs a.on .pill{background:rgba(233,181,58,.18)}
 .footer{color:#ddd;font-family:"Permanent Marker",cursive}
 .footer b{color:var(--yel)}
 </style>
@@ -478,7 +478,7 @@ nav.tabs a.on .pill{background:rgba(255,225,53,.16)}
     </svg>
     <div><h1>Mahjong Quick Start</h1><small>by Soul Society</small></div>
   </div>
-  <svg class="drips" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path fill="#FFE135" d="M0 0H400V4C390 4 388 16 383 16S377 4 368 4C352 4 350 22 344 22S337 4 322 4H290C280 4 279 12 275 12S270 4 262 4H215C204 4 203 24 197 24S190 4 178 4H130C121 4 120 14 116 14S110 4 101 4H60C50 4 48 19 43 19S36 4 26 4H0Z"/></svg>
+  <svg class="drips" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path fill="#3CC48C" d="M0 0H400V4C390 4 388 16 383 16S377 4 368 4C352 4 350 22 344 22S337 4 322 4H290C280 4 279 12 275 12S270 4 262 4H215C204 4 203 24 197 24S190 4 178 4H130C121 4 120 14 116 14S110 4 101 4H60C50 4 48 19 43 19S36 4 26 4H0Z"/></svg>
 </header>
 
 <main>
